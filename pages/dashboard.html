@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guest Dashboard — Serene Retreat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* Dashboard specific overrides */
+    body {
+      padding-top: 70px;
+      overflow-x: hidden;
+    }
+
+    .dashboard-layout {
+      min-height: calc(100vh - 70px);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+
+    @media (max-width: 991px) {
+      .dashboard-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dashboard-sidebar {
+      background: var(--card-bg);
+      border-right: 1px solid var(--border);
+      height: calc(100vh - 70px);
+      position: sticky;
+      top: 70px;
+      overflow-y: auto;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+    }
+
+    [dir="rtl"] .dashboard-sidebar {
+      border-right: none;
+      border-left: 1px solid var(--border);
+    }
+
+    .sidebar-section-title {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      padding: 1.5rem 1.5rem 0.5rem;
+      opacity: 0.7;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.75rem 1.5rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.92rem;
+      border-radius: 12px;
+      margin: 0.2rem 0.75rem;
+      transition: all 0.25s ease;
+      text-decoration: none !important;
+    }
+
+    .sidebar-link .icon {
+      font-size: 1.2rem;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(46, 139, 87, 0.05);
+      border-radius: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .sidebar-link:hover {
+      background: rgba(46, 139, 87, 0.08);
+      color: var(--primary);
+    }
+
+    .sidebar-link:hover .icon {
+      background: rgba(46, 139, 87, 0.12);
+      transform: scale(1.1);
+    }
+
+    .sidebar-link.active {
+      background: linear-gradient(to right, rgba(46, 139, 87, 0.12), rgba(46, 139, 87, 0.03));
+      color: var(--primary);
+      font-weight: 700;
+      box-shadow: inset 4px 0 0 var(--primary);
+    }
+
+    [dir="rtl"] .sidebar-link.active {
+      background: linear-gradient(to left, rgba(46, 139, 87, 0.12), rgba(46, 139, 87, 0.03));
+      box-shadow: inset -4px 0 0 var(--primary);
+    }
+
+    .dashboard-main {
+      background: var(--bg-body);
+      padding: 2.5rem;
+      transition: opacity 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-main {
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    /* Mobile Sidebar Toggle */
+    .sidebar-toggle-mobile {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(46, 139, 87, 0.4);
+      border: none;
+      z-index: 1001;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    @media (max-width: 991px) {
+      .sidebar-toggle-mobile {
+        display: flex;
+      }
+
+      .dashboard-sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        box-shadow: 15px 0 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .dashboard-sidebar.active {
+        left: 0;
+      }
+
+      [dir="rtl"] .dashboard-sidebar {
+        left: auto;
+        right: -280px;
+        box-shadow: -15px 0 40px rgba(0, 0, 0, 0.1);
+      }
+
+      [dir="rtl"] .dashboard-sidebar.active {
+        right: 0;
+      }
+    }
+
+    /* Specialized Content Styles */
+    .view-fade-in {
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="dashboard-page">
+
+  <!-- <div id="header-placeholder"></div> -->
+
+  <!-- DASHBOARD LAYOUT -->
+  <div class="dashboard-layout">
+
+    <!-- SIDEBAR (Desktop) -->
+    <div class="dashboard-sidebar d-none d-lg-block" id="dashboard-sidebar">
+      <!-- User Profile -->
+      <div class="text-center mb-1" style="padding: 2.5rem 1rem 1.5rem; border-bottom: 1px solid var(--border);">
+        <div
+          style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff;box-shadow: 0 8px 20px rgba(46, 139, 87, 0.2); border: 2px solid var(--card-bg);">
+          🌸</div>
+        <div style="font-weight:800;color:var(--text-primary);font-size:1.1rem; letter-spacing: -0.01em;">Sarah M.</div>
+        <div style="font-size:0.75rem;color:var(--text-muted); font-weight: 600;">Vipassana Member</div>
+      </div>
+
+      <div class="sidebar-section-title">MAIN</div>
+      <a href="#overview" class="sidebar-link active" data-page="overview">
+        <span class="icon">📊</span> Dashboard Overview
+      </a>
+      <a href="#questionnaire.html" class="sidebar-link" data-page="questionnaire.html">
+        <span class="icon">📋</span> Wellness Form
+      </a>
+      <a href="#itinerary-detail.html" class="sidebar-link" data-page="itinerary-detail.html">
+        <span class="icon">📅</span> My Itinerary
+      </a>
+
+      <div class="sidebar-section-title">EXPERIENCE</div>
+      <a href="#addons.html" class="sidebar-link" data-page="addons.html">
+        <span class="icon">✨</span> Add-ons
+      </a>
+      <a href="#book-sessions" class="sidebar-link" data-page="book-sessions">
+        <span class="icon">🧘</span> Book Sessions
+      </a>
+      <a href="#activities" class="sidebar-link" data-page="activities">
+        <span class="icon">🌿</span> Retreat Activities
+      </a>
+
+      x -->
+      <a href="javascript:void(0)" class="sidebar-link" data-bs-toggle="modal" data-bs-target="#logoutModal"
+        style="color:var(--accent);">
+        <span class="icon">🚪</span> Logout
+      </a>
+
+      <!-- Retreat Journey Mini Progress -->
+      <div
+        style="margin: 1.5rem 0.75rem; padding: 1.25rem; background: rgba(58, 172, 109, 0.05); border-radius: 16px; border: 1px solid rgba(58, 172, 109, 0.1);">
+        <div
+          style="font-size: 0.65rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
+          <span>Journey Progress</span>
+          <span style="color: var(--primary);">40%</span>
+        </div>
+        <div class="progress"
+          style="height: 6px; background: rgba(0,0,0,0.05); border-radius: 10px; margin-bottom: 0.75rem;">
+          <div class="progress-bar" style="width: 40%; background: var(--primary); border-radius: 10px;"></div>
+        </div>
+        <a href="#questionnaire.html"
+          style="font-size: 0.78rem; font-weight: 700; color: var(--primary); text-decoration: none;">Complete Prep
+          →</a>
+      </div>
+    </div>
+
+    <!-- Mobile Toggle Button -->
+    <button class="sidebar-toggle-mobile" id="mobile-sidebar-toggle">
+      <span>☰</span>
+    </button>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="dashboard-main" id="dashboard-viewport">
+
+      <!-- Greeting -->
+      <div class="greeting-card">
+        <div style="position:relative;z-index:1;">
+          <div
+            style="font-size:0.78rem;font-weight:600;opacity:0.7;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;">
+            Welcome back
+          </div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;margin-bottom:0.5rem;">
+            Good morning, <em>Sarah</em> 🌸
+          </h2>
+          <p style="opacity:0.8;font-size:0.92rem;max-width:480px;">
+            Your Silent Vipassana Journey begins in <strong>23 days</strong>. Take a moment today to complete your
+            wellness questionnaire so our guides can prepare for you.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="quick-stat">
+            <div class="quick-stat-icon" style="background:rgba(46,139,87,0.1);">📅</div>
+            <div class="quick-stat-number">23</div>
+            <div class="quick-stat-label">Days Until Retreat</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="quick-stat">
+            <div class="quick-stat-icon" style="background:rgba(119,136,153,0.1);">📋</div>
+            <div class="quick-stat-number">40<span style="font-size:1rem;">%</span></div>
+            <div class="quick-stat-label">Form Complete</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="quick-stat">
+            <div class="quick-stat-icon" style="background:rgba(212,196,183,0.3);">✨</div>
+            <div class="quick-stat-number">0</div>
+            <div class="quick-stat-label">Add-ons Selected</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="quick-stat">
+            <div class="quick-stat-icon" style="background:rgba(46,139,87,0.1);">🌿</div>
+            <div class="quick-stat-number">1</div>
+            <div class="quick-stat-label">Active Booking</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Summary -->
+      <div class="booking-card mb-4">
+        <div class="booking-card-header">
+          <div
+            style="width:48px;height:48px;border-radius:12px;background:rgba(46,139,87,0.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">
+            🧘</div>
+          <div style="flex:1;">
+            <div
+              style="color:rgba(255,255,255,0.6);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.25rem;">
+              Active Booking</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;font-weight:400;">Silent
+              Vipassana Journey</div>
+          </div>
+          <div class="booking-badge">Confirmed ✓</div>
+        </div>
+        <div class="p-4">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <div class="row g-2">
+                <div class="col-6">
+                  <div
+                    style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">
+                    Check-in</div>
+                  <div style="font-weight:700;color:var(--text-primary);">Jan 15, 2025</div>
+                </div>
+                <div class="col-6">
+                  <div
+                    style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">
+                    Check-out</div>
+                  <div style="font-weight:700;color:var(--text-primary);">Jan 21, 2025</div>
+                </div>
+                <div class="col-6">
+                  <div
+                    style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">
+                    Duration</div>
+                  <div style="font-weight:700;color:var(--text-primary);">7 Days</div>
+                </div>
+                <div class="col-6">
+                  <div
+                    style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">
+                    Cabin</div>
+                  <div style="font-weight:700;color:var(--text-primary);">Private Forest</div>
+                </div>
+                <div class="col-6">
+                  <div
+                    style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">
+                    Total Paid</div>
+                  <div
+                    style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--primary);font-weight:600;">
+                    $2,400</div>
+                </div>
+                <div class="col-6">
+                  <div
+                    style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;">
+                    Ref</div>
+                  <div style="font-weight:700;color:var(--text-primary);font-size:0.82rem;">SR-20250115-7742</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div style="background:var(--bg-section);border-radius:14px;padding:1.25rem;text-align:center;">
+                <div
+                  style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.06em;">
+                  Countdown to Your Journey</div>
+                <div class="d-flex justify-content-center gap-3">
+                  <div class="countdown-box">
+                    <div class="countdown-num" id="days">23</div>
+                    <div class="countdown-label">Days</div>
+                  </div>
+                  <div class="countdown-num" style="opacity:0.3;align-self:flex-start;margin-top:0.25rem;">:</div>
+                  <div class="countdown-box">
+                    <div class="countdown-num" id="hours">14</div>
+                    <div class="countdown-label">Hours</div>
+                  </div>
+                  <div class="countdown-num" style="opacity:0.3;align-self:flex-start;margin-top:0.25rem;">:</div>
+                  <div class="countdown-box">
+                    <div class="countdown-num" id="minutes">37</div>
+                    <div class="countdown-label">Minutes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:1.25rem;">Quick Actions</h4>
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-lg-3">
+          <a href="questionnaire.html" class="quick-link-card" data-page="questionnaire.html">
+            <div class="quick-link-icon">📋</div>
+            <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">Wellness Form</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">40% complete · 12 questions left</div>
+            <div style="margin-top:0.75rem;">
+              <div class="progress-retreat">
+                <div class="progress-fill" style="width:40%;"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <a href="addons.html" class="quick-link-card" data-page="addons.html">
+            <div class="quick-link-icon">✨</div>
+            <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">Add-on Extras</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Massages, private sessions & more</div>
+          </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <a href="itinerary-detail.html" class="quick-link-card" data-page="itinerary-detail.html">
+            <div class="quick-link-icon">📅</div>
+            <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">View Itinerary</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Day-by-day program details</div>
+          </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <a href="contact.html" class="quick-link-card" data-page="contact.html">
+            <div class="quick-link-icon">💬</div>
+            <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">Support</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Ask our team anything</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Pre-Retreat Timeline -->
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="dashboard-card h-100">
+            <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;margin-bottom:1.25rem;">Pre-Retreat
+              Checklist</h5>
+            <div class="timeline-mini">
+              <div class="timeline-mini-item">
+                <div style="font-weight:600;font-size:0.88rem;color:var(--primary);">✓ Booking Confirmed</div>
+                <div style="font-size:0.78rem;color:var(--text-muted);">Dec 22, 2024 · Ref: SR-20250115-7742</div>
+              </div>
+              <div class="timeline-mini-item">
+                <div style="font-weight:600;font-size:0.88rem;color:var(--primary);">✓ Deposit Paid</div>
+                <div style="font-size:0.78rem;color:var(--text-muted);">Dec 22, 2024 · $2,400 USD</div>
+              </div>
+              <div class="timeline-mini-item">
+                <div style="font-weight:600;font-size:0.88rem;color:var(--accent);">⏳ Complete Wellness Form</div>
+                <div style="font-size:0.78rem;color:var(--text-muted);">Due Jan 8, 2025 · <a href="questionnaire.html"
+                    data-page="questionnaire.html" style="color:var(--primary);">Complete now</a></div>
+              </div>
+              <div class="timeline-mini-item" style="opacity:0.5;">
+                <div style="font-weight:600;font-size:0.88rem;">📦 Pack & Prepare</div>
+                <div style="font-size:0.78rem;color:var(--text-muted);">Jan 14, 2025 · Packing list coming</div>
+              </div>
+              <div class="timeline-mini-item" style="opacity:0.5;">
+                <div style="font-weight:600;font-size:0.88rem;">🚌 Shuttle Departs</div>
+                <div style="font-size:0.78rem;color:var(--text-muted);">Jan 15, 10:00 AM · Forest Gate</div>
+              </div>
+              <div class="timeline-mini-item" style="opacity:0.5;margin-bottom:0;">
+                <div style="font-weight:600;font-size:0.88rem;">🌿 Your Journey Begins</div>
+                <div style="font-size:0.78rem;color:var(--text-muted);">Jan 15, 3:00 PM · Welcome Circle</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="dashboard-card h-100">
+            <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;margin-bottom:1.25rem;">What to Bring
+            </h5>
+            <div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);">✓</span> Comfortable meditation
+                clothing (neutral tones)</div>
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);">✓</span> Yoga mat (or rent one on-site)
+              </div>
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);">✓</span> Personal toiletries
+                (fragrance-free preferred)</div>
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);">✓</span> Journal & pen</div>
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);">✓</span> Warm layers for morning
+                sessions</div>
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);">✓</span> Walking shoes or barefoot
+                sandals</div>
+              <hr style="border-color:var(--border);">
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--accent);">✗</span> No phones / devices (will be
+                collected)</div>
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--accent);">✗</span> No perfume / scented products
+              </div>
+              <div class="d-flex gap-2"><span style="color:var(--accent);">✗</span> No alcohol or recreational
+                substances</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content"
+        style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden;">
+        <div class="modal-body text-center p-5">
+          <div style="font-size: 3.5rem; margin-bottom: 1.5rem;">🌿</div>
+          <h4
+            style="font-family:'Cormorant Garamond',serif; font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-primary);">
+            Ready to Leave?</h4>
+          <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Are you sure you want to log out
+            of your Serene Retreat dashboard?</p>
+          <div class="d-flex gap-3 justify-content-center">
+            <button type="button" class="btn-outline-retreat px-4" data-bs-dismiss="modal"
+              style="min-width: 120px;">Stay</button>
+            <a href="../index.html" class="btn-primary-retreat px-4"
+              style="min-width: 120px; text-decoration: none; justify-content: center;">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="footer-placeholder"></div> -->
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Logic scripts -->
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/loader.js"></script>
+  <script src="../assets/js/dashboard-router.js"></script>
+  <script>
+    // Countdown timer
+    function updateCountdown() {
+      const target = new Date('2025-01-15T15:00:00');
+      const now = new Date();
+      const diff = target - now;
+      if (diff < 0) return;
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const el = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = String(v).padStart(2, '0'); };
+      el('days', d); el('hours', h); el('minutes', m);
+    }
+    window.updateCountdown = updateCountdown; // Expose to window for router
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
+</body>
+
+</html>

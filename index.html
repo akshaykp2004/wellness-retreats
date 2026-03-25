@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serene Retreat — Disconnect to Reconnect</title>
+    <meta name="description" content="A premium Digital Detox & Wellness Retreat Center. Find peace, restore balance, and reconnect with your true self.">
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* Hero nature illustrations via CSS */
+        .hero-leaf {
+            position: absolute;
+            opacity: 0.06;
+            font-size: 12rem;
+            pointer-events: none;
+        }
+        .hero-leaf-1 { top: 10%; right: 5%; animation: float 8s ease-in-out infinite; }
+        .hero-leaf-2 { bottom: 15%; left: 3%; animation: float 10s ease-in-out infinite 2s; font-size: 8rem; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(8deg); }
+        }
+
+        /* Package card image placeholders */
+        .pkg-img {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .pkg-img-1 { background: linear-gradient(135deg, #1a3d28, #2E8B57, #5ab082); }
+        .pkg-img-2 { background: linear-gradient(135deg, #2a3d4a, #778899, #a0b4c4); }
+        .pkg-img-3 { background: linear-gradient(135deg, #3d2a1a, #8B6542, #c4a882); }
+
+        /* About snippet */
+        .about-visual {
+            height: 400px;
+            background: linear-gradient(160deg, #0d2416, #1a4028, #2E8B57 60%, #4a9e6e);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 60% 40%, rgba(212,196,183,0.15), transparent 60%);
+        }
+
+        /* Testimonial carousel fix */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(1);
+            background-color: var(--primary);
+            border-radius: 50%;
+            padding: 1rem;
+        }
+
+        .feature-icon-box {
+            width: 60px; height: 60px;
+            border-radius: 16px;
+            background: rgba(46,139,87,0.1);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon-box {
+            background: var(--primary);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.1), transparent),
+                              radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.05), transparent);
+        }
+
+        .filter-btn {
+            background: var(--bg-body);
+            border: 1.5px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.45rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="home-page">
+
+<div id="header-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="hero-video-bg">
+        <div id="hero-particles" class="hero-particles"></div>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <!-- Decorative leaves -->
+    <div class="hero-leaf hero-leaf-1">🍃</div>
+    <div class="hero-leaf hero-leaf-2">🌿</div>
+
+    <div class="container position-relative" style="z-index:2;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 hero-content">
+                <div class="hero-badge">✦ Premium Wellness Retreats ✦</div>
+                <h1 class="hero-title">
+                    Disconnect to<br>
+                    <em>Reconnect.</em><br>
+                    Find Your Peace.
+                </h1>
+                <p class="hero-subtitle">
+                    Step away from the noise. Immerse yourself in nature's embrace. 
+                    Seven days of silence, healing, and transformation await you.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="pages/packages.html" class="btn-primary-retreat text-decoration-none">
+                        🌿 Begin Your Journey
+                    </a>
+                    <a href="pages/about.html" class="btn-outline-retreat text-decoration-none">
+                        Learn More ↓
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+    <div class="container">
+        <div class="row g-3 text-center">
+            <div class="col-6 col-md-3 stat-item">
+                <span class="stat-number" data-target="2400" data-suffix="+">0</span>
+                <span class="stat-label">Guests Transformed</span>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <span class="stat-number" data-target="12" data-suffix="">0</span>
+                <span class="stat-label">Retreat Programs</span>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <span class="stat-number" data-target="98" data-suffix="%">0</span>
+                <span class="stat-label">Guest Satisfaction</span>
+            </div>
+            <div class="col-6 col-md-3 stat-item">
+                <span class="stat-number" data-target="8" data-suffix="">0</span>
+                <span class="stat-label">Years of Healing</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RETREAT HIGHLIGHTS -->
+<section class="section-pad">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center animate-on-scroll">
+                <div class="section-label">Our Retreat Programs</div>
+                <h2 class="section-title">Curated Paths to<br><em style="color:var(--primary);">Inner Peace</em></h2>
+                <p class="section-subtitle mx-auto">
+                    Each program is carefully designed to gently peel away the layers of digital noise, 
+                    returning you to your most authentic self.
+                </p>
+            </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-5 animate-on-scroll">
+            <button class="filter-btn active" data-filter="all">All Retreats</button>
+            <button class="filter-btn" data-filter="silent">Silent</button>
+            <button class="filter-btn" data-filter="detox">Digital Detox</button>
+            <button class="filter-btn" data-filter="yoga">Yoga</button>
+            <button class="filter-btn" data-filter="weekend">Weekend</button>
+        </div>
+
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-md-6 col-lg-4 animate-on-scroll package-item" data-category="silent meditation">
+                <div class="retreat-card h-100">
+                    <div class="pkg-img pkg-img-1">🧘</div>
+                    <div class="retreat-card-body">
+                        <span class="tag">7 Days</span>
+                        <h3 class="retreat-card-title">Silent Vipassana Journey</h3>
+                        <div class="retreat-card-meta">
+                            <span>📅 Jan 15 – Jan 21</span>
+                            <span>👥 Max 12</span>
+                        </div>
+                        <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:1.25rem;line-height:1.7;">
+                            Seven days of deep silence, guided Vipassana meditation, and pure forest immersion. No screens. No noise. Just you.
+                        </p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="price-badge">$2,400 <span>/ person</span></div>
+                            <a href="pages/itinerary-detail.html" class="btn-primary-retreat text-decoration-none" style="padding:0.5rem 1.2rem;font-size:0.85rem;">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-6 col-lg-4 animate-on-scroll animate-delay-1 package-item" data-category="detox weekend">
+                <div class="retreat-card h-100">
+                    <div class="pkg-img pkg-img-2">📵</div>
+                    <div class="retreat-card-body">
+                        <span class="tag">Weekend</span>
+                        <span class="tag tag-sand">Popular</span>
+                        <h3 class="retreat-card-title">Weekend Tech Detox</h3>
+                        <div class="retreat-card-meta">
+                            <span>📅 Every Friday</span>
+                            <span>👥 Max 20</span>
+                        </div>
+                        <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:1.25rem;line-height:1.7;">
+                            48 hours to reclaim your presence. Forest walks, breathwork, farm-to-table meals, and zero WiFi.
+                        </p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="price-badge">$680 <span>/ person</span></div>
+                            <a href="pages/itinerary-detail.html" class="btn-primary-retreat text-decoration-none" style="padding:0.5rem 1.2rem;font-size:0.85rem;">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-6 col-lg-4 animate-on-scroll animate-delay-2 package-item" data-category="yoga wellness">
+                <div class="retreat-card h-100">
+                    <div class="pkg-img pkg-img-3">🌅</div>
+                    <div class="retreat-card-body">
+                        <span class="tag">5 Days</span>
+                        <h3 class="retreat-card-title">Sunrise Yoga & Renewal</h3>
+                        <div class="retreat-card-meta">
+                            <span>📅 Feb 3 – Feb 7</span>
+                            <span>👥 Max 16</span>
+                        </div>
+                        <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:1.25rem;line-height:1.7;">
+                            Greet each dawn with yoga and end each day with sound healing. Nourish body, mind, and spirit.
+                        </p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="price-badge">$1,580 <span>/ person</span></div>
+                            <a href="pages/itinerary-detail.html" class="btn-primary-retreat text-decoration-none" style="padding:0.5rem 1.2rem;font-size:0.85rem;">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5 animate-on-scroll">
+            <a href="pages/packages.html" class="btn-outline-retreat text-decoration-none">
+                View All Retreats →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-pad bg-sand">
+    <div class="container text-center">
+        <p class="italic text-lg mb-8" style="font-family:'Cormorant Garamond',serif; color: var(--text-secondary);">"I arrived exhausted, anxious, and disconnected. After seven days in the forest, I left feeling like I had finally come home — to myself."</p>
+        <div class="font-bold" style="color: var(--primary);">— Sarah M., Guest</div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Logic scripts -->
+<script src="assets/js/app.js"></script>
+<script src="assets/js/loader.js"></script>
+</body>
+</html>
