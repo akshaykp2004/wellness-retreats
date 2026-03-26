@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +11,74 @@
   <style>
     .addon-img {
       height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
       position: relative;
+      overflow: hidden;
     }
 
-    .addon-img-1 { background: linear-gradient(135deg, #2a1a3d, #6a4e9e, #b09ecc); }
-    .addon-img-2 { background: linear-gradient(135deg, #1a2d3d, #2e6e8b, #7abccc); }
-    .addon-img-3 { background: linear-gradient(135deg, #3d1a1a, #8b2e2e, #cc7a7a); }
-    .addon-img-4 { background: linear-gradient(135deg, #1a3d2a, #2e8b57, #7acc99); }
-    .addon-img-5 { background: linear-gradient(135deg, #3d2d1a, #8b6542, #ccaa7a); }
-    .addon-img-6 { background: linear-gradient(135deg, #1a3d3d, #2e8b8b, #7acccc); }
-    .addon-img-7 { background: linear-gradient(135deg, #2d1a3d, #6e2e8b, #bc7acc); }
-    .addon-img-8 { background: linear-gradient(135deg, #3d3d1a, #8b8b2e, #cccc7a); }
-    .addon-img-9 { background: linear-gradient(135deg, #1a1a3d, #2e2e8b, #7a7acc); }
+    .addon-img-1 {
+      background-image: url('../assets/img/addons/deep-tissue.png');
+      background-size: cover;
+      background-position: center;
+    }
 
-    .addon-card { cursor: default; }
+    .addon-img-2 {
+      background-image: url('../assets/img/addons/hot-stone.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img-3 {
+      background-image: url('../assets/img/addons/ayurvedic.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img-4 {
+      background-image: url('../assets/img/addons/meditation.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img-5 {
+      background-image: url('../assets/img/addons/yoga.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img-6 {
+      background-image: url('../assets/img/addons/sound-healing.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img-7 {
+      background-image: url('../assets/img/addons/nutrition.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img-8 {
+      background-image: url('../assets/img/addons/cooking.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img-9 {
+      background-image: url('../assets/img/addons/forest-bathing.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .addon-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .addon-card {
+      cursor: default;
+    }
 
     .btn-success-retreat {
       background: var(--primary);
@@ -45,9 +96,9 @@
     }
 
     .btn-remove {
-      background: rgba(200,80,80,0.1);
+      background: rgba(200, 80, 80, 0.1);
       color: #c85050;
-      border: 1px solid rgba(200,80,80,0.2);
+      border: 1px solid rgba(200, 80, 80, 0.2);
       padding: 0.55rem 1.2rem;
       border-radius: 50px;
       font-weight: 700;
@@ -95,272 +146,372 @@
       color: var(--text-secondary);
     }
 
-    .cart-item-row:last-child { border-bottom: none; }
-  </style>
-</head>
-<body>
-
-<div id="header-placeholder"></div>
-
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="container">
-    <div class="section-label">Guest Portal</div>
-    <h1 class="page-header-title">
-      Enhance Your <em style="color:var(--primary);">Journey</em>
-    </h1>
-    <p class="section-subtitle mx-auto">
-      Curate your perfect retreat experience with our premium add-ons. 
-      All extras are available to book until 72 hours before arrival.
-    </p>
-  </div>
-</div>
-
-<!-- CART FLOATING PANEL -->
-<div id="cart-panel" class="cart-panel">
-  <div class="d-flex align-items-center justify-content-between mb-1">
-    <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Your Add-ons</span>
-    <span style="font-size:0.78rem;color:var(--text-muted);"><span id="cart-count">0</span> items</span>
-  </div>
-  <div id="cart-items-list" style="margin:0.75rem 0;"></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;padding-top:0.5rem;border-top:2px solid var(--border);">
-    <span style="font-weight:700;font-size:0.88rem;">Total</span>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--primary);font-weight:600;" id="cart-total">$0</div>
-  </div>
-  <button class="btn-primary-retreat mt-3" style="width:100%;justify-content:center;" onclick="confirmAddons()">
-    Confirm Add-ons →
-  </button>
-</div>
-
-<!-- ADDONS CONTENT -->
-<section class="section-pad" style="padding-top:3rem;">
-  <div class="container">
-
-    <!-- CATEGORY: Massages -->
-    <div class="category-header animate-on-scroll">
-      <span style="font-size:1.5rem;">💆</span>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Body Therapies</h2>
-      <div class="category-line"></div>
-    </div>
-
-    <div class="row g-4 mb-5">
-      <div class="col-sm-6 col-lg-4 animate-on-scroll">
-        <div class="addon-card" data-id="dt-massage" data-name="Deep Tissue Massage" data-price="120">
-          <div class="addon-img addon-img-1">💆‍♀️</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">90 min</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Deep Tissue Massage</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Targeted pressure to release deep muscle tension and chronic knots. Deeply restorative.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$120</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-1">
-        <div class="addon-card" data-id="hot-stone" data-name="Hot Stone Massage" data-price="140">
-          <div class="addon-img addon-img-2">🪨</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">75 min</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Hot Stone Massage</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Volcanic basalt stones melt away tension. Heat therapy meets ancient healing wisdom.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$140</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-2">
-        <div class="addon-card" data-id="ayurvedic" data-name="Ayurvedic Abhyanga" data-price="95">
-          <div class="addon-img addon-img-3">🫙</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">60 min</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Ayurvedic Abhyanga</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Full-body warm oil massage following Ayurvedic principles. Balances all three doshas.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$95</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CATEGORY: Private Sessions -->
-    <div class="category-header animate-on-scroll">
-      <span style="font-size:1.5rem;">🧘</span>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Private Sessions</h2>
-      <div class="category-line"></div>
-    </div>
-
-    <div class="row g-4 mb-5">
-      <div class="col-sm-6 col-lg-4 animate-on-scroll">
-        <div class="addon-card" data-id="priv-meditation" data-name="1:1 Meditation Session" data-price="85">
-          <div class="addon-img addon-img-4">🧘‍♀️</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">60 min</span>
-            <span class="tag tag-sand">Most Popular</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Private 1:1 Meditation</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Personal session with our lead meditation teacher. Customized to your practice level and intention.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$85</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-1">
-        <div class="addon-card" data-id="yoga-private" data-name="Private Yoga Session" data-price="90">
-          <div class="addon-img addon-img-5">🌅</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">75 min</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Private Yoga Session</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Tailored yoga practice with your personal instructor. All levels welcome. Choose your style.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$90</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-2">
-        <div class="addon-card" data-id="sound-healing" data-name="Private Sound Healing" data-price="75">
-          <div class="addon-img addon-img-6">🎵</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">45 min</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Private Sound Healing</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Tibetan bowls, crystal singing bowls, and tuning forks. Pure vibrational medicine.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$75</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CATEGORY: Nutrition -->
-    <div class="category-header animate-on-scroll">
-      <span style="font-size:1.5rem;">🥗</span>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Nutritional Wellbeing</h2>
-      <div class="category-line"></div>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-sm-6 col-lg-4 animate-on-scroll">
-        <div class="addon-card" data-id="nutrition" data-name="Nutritional Counseling" data-price="110">
-          <div class="addon-img addon-img-7">🥑</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">90 min</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Nutritional Counseling</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Personal session with our resident nutritionist. Receive a customized 30-day healing meal plan.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$110</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-1">
-        <div class="addon-card" data-id="cooking" data-name="Plant-Based Cooking Class" data-price="65">
-          <div class="addon-img addon-img-8">👨‍🍳</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">3 hours</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Plant-Based Cooking Class</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Learn to prepare healing, nourishing meals with our chef. Take the knowledge home with you.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$65</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-2">
-        <div class="addon-card" data-id="forest-bath" data-name="Forest Bathing Guide" data-price="55">
-          <div class="addon-img addon-img-9">🌲</div>
-          <div style="padding:1.25rem;">
-            <span class="tag">2.5 hours</span>
-            <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Forest Bathing (Shinrin-Yoku)</h4>
-            <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Guided immersive walk through our ancient forest. Research-backed stress and cortisol reduction.</p>
-            <div class="d-flex align-items-center justify-content-between">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">$55</div>
-              <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add to Itinerary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div id="footer-placeholder"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/app.js"></script>
-<script src="../assets/js/loader.js"></script>
-<script>
-  // Enhanced cart with panel
-  const cartItems = {};
-  document.querySelectorAll('.btn-add-addon').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.addon-card');
-      const id = card.dataset.id;
-      const name = card.dataset.name;
-      const price = parseFloat(card.dataset.price);
-
-      if (cartItems[id]) {
-        delete cartItems[id];
-        card.classList.remove('in-cart');
-        btn.textContent = '+ Add to Itinerary';
-        btn.className = 'btn-add-addon btn-primary-retreat';
-        btn.style = 'padding:0.45rem 1rem;font-size:0.8rem;';
-      } else {
-        cartItems[id] = { name, price };
-        card.classList.add('in-cart');
-        btn.textContent = '✓ Added';
-        btn.className = 'btn-add-addon btn-success-retreat';
-        btn.style = 'padding:0.45rem 1rem;font-size:0.8rem;';
-      }
-
-      updateCartPanel();
-    });
-  });
-
-  function updateCartPanel() {
-    const panel = document.getElementById('cart-panel');
-    const list = document.getElementById('cart-items-list');
-    const count = document.getElementById('cart-count');
-    const total = document.getElementById('cart-total');
-
-    const items = Object.values(cartItems);
-    if (items.length === 0) {
-      panel.style.display = 'none';
-      return;
+    .cart-item-row:last-child {
+      border-bottom: none;
     }
 
-    panel.style.display = 'block';
-    count.textContent = items.length;
-    total.textContent = '$' + items.reduce((s, i) => s + i.price, 0);
-    list.innerHTML = items.map(i => `
+    .page-header {
+      position: relative;
+      background: #1a3d28 !important;
+      /* Fallback */
+      color: #fff !important;
+      overflow: hidden;
+      padding: 10rem 0 6rem !important;
+      border-bottom: none !important;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=2000');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5;
+      /* Darken the image */
+      z-index: 0;
+    }
+
+    .page-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(26, 61, 40, 0.8), rgba(26, 61, 40, 0.4));
+      z-index: 1;
+    }
+
+    .page-header .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-header .section-label {
+      color: var(--secondary) !important;
+    }
+
+    .page-header-title {
+      color: #fff !important;
+    }
+
+    .page-header .section-subtitle {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="section-label">Guest Portal</div>
+      <h1 class="page-header-title">
+        Enhance Your <em style="color:var(--secondary);">Journey</em>
+      </h1>
+      <p class="section-subtitle mx-auto">
+        Curate your perfect retreat experience with our premium add-ons.
+        All extras are available to book until 72 hours before arrival.
+      </p>
+    </div>
+  </div>
+
+  <!-- CART FLOATING PANEL -->
+  <div id="cart-panel" class="cart-panel">
+    <div class="d-flex align-items-center justify-content-between mb-1">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Your Add-ons</span>
+      <span style="font-size:0.78rem;color:var(--text-muted);"><span id="cart-count">0</span> items</span>
+    </div>
+    <div id="cart-items-list" style="margin:0.75rem 0;"></div>
+    <div
+      style="display:flex;justify-content:space-between;align-items:center;padding-top:0.5rem;border-top:2px solid var(--border);">
+      <span style="font-weight:700;font-size:0.88rem;">Total</span>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--primary);font-weight:600;"
+        id="cart-total">$0</div>
+    </div>
+    <button class="btn-primary-retreat mt-3" style="width:100%;justify-content:center;" onclick="confirmAddons()">
+      Confirm Add-ons →
+    </button>
+  </div>
+
+  <!-- ADDONS CONTENT -->
+  <section class="section-pad" style="padding-top:3rem;">
+    <div class="container">
+
+      <!-- CATEGORY: Massages -->
+      <div class="category-header animate-on-scroll">
+        <span style="font-size:1.5rem;">💆</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Body Therapies
+        </h2>
+        <div class="category-line"></div>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-lg-4 animate-on-scroll">
+          <div class="addon-card" data-id="dt-massage" data-name="Deep Tissue Massage" data-price="120">
+            <div class="addon-img addon-img-1"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">90 min</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Deep Tissue
+                Massage</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Targeted
+                pressure to release deep muscle tension and chronic knots. Deeply restorative.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $120</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-1">
+          <div class="addon-card" data-id="hot-stone" data-name="Hot Stone Massage" data-price="140">
+            <div class="addon-img addon-img-2"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">75 min</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Hot Stone
+                Massage</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Volcanic
+                basalt stones melt away tension. Heat therapy meets ancient healing wisdom.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $140</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-2">
+          <div class="addon-card" data-id="ayurvedic" data-name="Ayurvedic Abhyanga" data-price="95">
+            <div class="addon-img addon-img-3"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">60 min</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Ayurvedic
+                Abhyanga</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Full-body
+                warm oil massage following Ayurvedic principles. Balances all three doshas.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $95</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY: Private Sessions -->
+      <div class="category-header animate-on-scroll">
+        <span style="font-size:1.5rem;">🧘</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Private Sessions
+        </h2>
+        <div class="category-line"></div>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-lg-4 animate-on-scroll">
+          <div class="addon-card" data-id="priv-meditation" data-name="1:1 Meditation Session" data-price="85">
+            <div class="addon-img addon-img-4"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">60 min</span>
+              <span class="tag tag-sand">Most Popular</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Private 1:1
+                Meditation</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Personal
+                session with our lead meditation teacher. Customized to your practice level and intention.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $85</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-1">
+          <div class="addon-card" data-id="yoga-private" data-name="Private Yoga Session" data-price="90">
+            <div class="addon-img addon-img-5"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">75 min</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Private Yoga
+                Session</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Tailored yoga
+                practice with your personal instructor. All levels welcome. Choose your style.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $90</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-2">
+          <div class="addon-card" data-id="sound-healing" data-name="Private Sound Healing" data-price="75">
+            <div class="addon-img addon-img-6"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">45 min</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Private Sound
+                Healing</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Tibetan
+                bowls, crystal singing bowls, and tuning forks. Pure vibrational medicine.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $75</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY: Nutrition -->
+      <div class="category-header animate-on-scroll">
+        <span style="font-size:1.5rem;">🥗</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Nutritional
+          Wellbeing</h2>
+        <div class="category-line"></div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4 animate-on-scroll">
+          <div class="addon-card" data-id="nutrition" data-name="Nutritional Counseling" data-price="110">
+            <div class="addon-img addon-img-7"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">90 min</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Nutritional
+                Counseling</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Personal
+                session with our resident nutritionist. Receive a customized 30-day healing meal plan.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $110</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-1">
+          <div class="addon-card" data-id="cooking" data-name="Plant-Based Cooking Class" data-price="65">
+            <div class="addon-img addon-img-8"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">3 hours</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Plant-Based
+                Cooking Class</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Learn to
+                prepare healing, nourishing meals with our chef. Take the knowledge home with you.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $65</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 animate-on-scroll animate-delay-2">
+          <div class="addon-card" data-id="forest-bath" data-name="Forest Bathing Guide" data-price="55">
+            <div class="addon-img addon-img-9"></div>
+            <div style="padding:1.25rem;">
+              <span class="tag">2.5 hours</span>
+              <h4 style="font-size:1.1rem;font-family:'Cormorant Garamond',serif;margin-bottom:0.4rem;">Forest Bathing
+                (Shinrin-Yoku)</h4>
+              <p style="font-size:0.83rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.6;">Guided
+                immersive walk through our ancient forest. Research-backed stress and cortisol reduction.</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--primary);font-weight:600;">
+                  $55</div>
+                <button class="btn-add-addon btn-primary-retreat" style="padding:0.45rem 1rem;font-size:0.8rem;">+ Add
+                  to Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/loader.js"></script>
+  <script>
+    // Enhanced cart with panel
+    const cartItems = {};
+    document.querySelectorAll('.btn-add-addon').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.addon-card');
+        const id = card.dataset.id;
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+
+        if (cartItems[id]) {
+          delete cartItems[id];
+          card.classList.remove('in-cart');
+          btn.textContent = '+ Add to Itinerary';
+          btn.className = 'btn-add-addon btn-primary-retreat';
+          btn.style = 'padding:0.45rem 1rem;font-size:0.8rem;';
+        } else {
+          cartItems[id] = { name, price };
+          card.classList.add('in-cart');
+          btn.textContent = '✓ Added';
+          btn.className = 'btn-add-addon btn-success-retreat';
+          btn.style = 'padding:0.45rem 1rem;font-size:0.8rem;';
+        }
+
+        updateCartPanel();
+      });
+    });
+
+    function updateCartPanel() {
+      const panel = document.getElementById('cart-panel');
+      const list = document.getElementById('cart-items-list');
+      const count = document.getElementById('cart-count');
+      const total = document.getElementById('cart-total');
+
+      const items = Object.values(cartItems);
+      if (items.length === 0) {
+        panel.style.display = 'none';
+        return;
+      }
+
+      panel.style.display = 'block';
+      count.textContent = items.length;
+      total.textContent = '$' + items.reduce((s, i) => s + i.price, 0);
+      list.innerHTML = items.map(i => `
       <div class="cart-item-row">
         <span>${i.name}</span>
         <strong style="color:var(--primary);">$${i.price}</strong>
       </div>
     `).join('');
-  }
+    }
 
-  function confirmAddons() {
-    const panel = document.getElementById('cart-panel');
-    panel.innerHTML = `
+    function confirmAddons() {
+      const panel = document.getElementById('cart-panel');
+      panel.innerHTML = `
       <div class="text-center py-2">
         <div style="font-size:2rem;margin-bottom:0.5rem;">🌿</div>
         <div style="font-weight:700;color:var(--primary);font-size:0.95rem;">Add-ons Saved!</div>
@@ -368,7 +519,8 @@
         <a href="dashboard.html" style="font-size:0.82rem;color:var(--primary);display:block;margin-top:0.75rem;">← Dashboard</a>
       </div>
     `;
-  }
-</script>
+    }
+  </script>
 </body>
+
 </html>

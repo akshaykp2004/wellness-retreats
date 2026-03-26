@@ -1,75 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — Serene Retreat</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Serene Retreat</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
+
 <body class="bg-sand login-page">
 
-<div id="header-placeholder"></div>
+    <!-- <div id="header-placeholder"></div> -->
 
-<main class="section-pad" style="min-height: 80vh; display: flex; align-items: center;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <div class="form-retreat animate-on-scroll">
-                    <div class="text-center mb-4">
-                        <h2 class="section-title">Welcome Back</h2>
-                        <p class="section-subtitle">Sign in to your guest portal</p>
-                    </div>
-                    
-                    <form id="login-form">
-                        <div class="mb-3">
-                            <label class="form-label-retreat">Email Address</label>
-                            <input type="email" class="form-control-retreat" placeholder="nature@peace.com" required>
+    <main class="section-pad" style="min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="form-retreat animate-on-scroll">
+                        <div class="text-center mb-4">
+                            <h2 class="section-title">Welcome Back</h2>
+                            <p class="section-subtitle">Sign in to your guest portal</p>
                         </div>
-                        <div class="mb-4">
-                            <label class="form-label-retreat">Password</label>
-                            <input type="password" class="form-control-retreat" placeholder="••••••••" required>
+
+                        <form id="login-form">
+                            <div class="mb-3">
+                                <label class="form-label-retreat">Email Address</label>
+                                <input type="email" class="form-control-retreat" placeholder="nature@peace.com"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label-retreat">Password</label>
+                                <input type="password" class="form-control-retreat" placeholder="••••••••" required>
+                            </div>
+
+                            <button type="submit" class="btn-primary-retreat w-100 justify-content-center">
+                                Sign In 🌿
+                            </button>
+                        </form>
+
+                        <div class="divider-retreat mt-4 mb-4">
+                            <span>Or continue with</span>
                         </div>
-                        
-                        <button type="submit" class="btn-primary-retreat w-100 justify-content-center">
-                            Sign In 🌿
-                        </button>
-                    </form>
 
-                    <div class="divider-retreat mt-4 mb-4">
-                        <span>Or continue with</span>
-                    </div>
+                        <div class="d-flex flex-column gap-2 mb-3">
+                            <button class="btn-outline-retreat w-100 justify-content-center" style="font-weight: 600;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google"
+                                    style="width: 18px; margin-right: 10px;">
+                                Continue with Google
+                            </button>
+                            <button class="btn-outline-retreat w-100 justify-content-center" style="font-weight: 600;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord"
+                                    style="width: 18px; margin-right: 10px;">
+                                Continue with Discord
+                            </button>
+                        </div>
 
-                    <div class="d-flex flex-column gap-2 mb-3">
-                        <button class="btn-outline-retreat w-100 justify-content-center" style="font-weight: 600;">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google" style="width: 18px; margin-right: 10px;">
-                            Continue with Google
-                        </button>
-                        <button class="btn-outline-retreat w-100 justify-content-center" style="font-weight: 600;">
-                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" style="width: 18px; margin-right: 10px;">
-                            Continue with Discord
-                        </button>
-                    </div>
-                    
-                    <div class="text-center mt-4">
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">
-                            Don't have an account? <a href="booking.html" style="font-weight: 700; color: var(--primary);">Sign up</a>
-                        </p>
+                        <div class="text-center mt-4">
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">
+                                Don't have an account? <a href="booking.html"
+                                    style="font-weight: 700; color: var(--primary);">Sign up</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<div id="footer-placeholder"></div>
+    <!-- <div id="footer-placeholder"></div> -->
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Logic scripts -->
-<script src="../assets/js/app.js"></script>
-<script src="../assets/js/loader.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Logic scripts -->
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/loader.js"></script>
 
 </body>
+
 </html>

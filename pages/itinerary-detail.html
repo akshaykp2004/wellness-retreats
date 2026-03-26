@@ -10,7 +10,9 @@
   <style>
     .hero-detail {
       padding: 9rem 0 5rem;
-      background: linear-gradient(160deg, #0d2416 0%, #1a4028 40%, #2E8B57 80%, #4a9e6e 100%);
+      background-image: url('../assets/img/nature/morning-forest.png');
+      background-size: cover;
+      background-position: center;
       position: relative;
       overflow: hidden;
     }
@@ -18,7 +20,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 70% 30%, rgba(212,196,183,0.1), transparent 60%);
+      background: linear-gradient(to bottom, rgba(13, 36, 22, 0.6) 0%, rgba(13, 36, 22, 0.9) 70%, var(--bg-body) 100%);
+      z-index: 1;
     }
     .sticky-cta {
       position: sticky;
@@ -45,6 +48,27 @@
       border-radius: 50px;
       margin-right: 0.3rem;
     }
+    
+    .itinerary-background-wrap {
+      background-image: url('../assets/img/nature/abstract-nature.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    
+    .itinerary-background-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--bg-body);
+      opacity: 0.92;
+    }
+    
+    .itinerary-background-wrap > div {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 <body class="itinerary-page">
@@ -53,7 +77,7 @@
 
 <!-- HERO DETAIL -->
 <div class="hero-detail">
-  <div class="container position-relative">
+  <div class="container position-relative" style="z-index: 2;">
     <nav style="font-size:0.82rem;color:rgba(255,255,255,0.75);margin-bottom:1.5rem;">
       <a href="../index.html" style="color:rgba(255,255,255,0.75);">Home</a>
       <span style="margin:0 0.5rem;">›</span>
@@ -64,17 +88,17 @@
     <div class="row">
       <div class="col-lg-8">
         <span class="hero-badge mb-3 d-inline-block">7 Days · Silent Retreat</span>
-        <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);color:#fff;font-weight:400;margin-bottom:1rem;">
-          Silent Vipassana<br><em>Journey</em>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);color:#ffffff;font-weight:400;margin-bottom:1rem;text-shadow: 0 4px 25px rgba(0,0,0,0.6);">
+          Silent Vipassana<br><em style="color:var(--secondary); text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Journey</em>
         </h1>
-        <p style="color:rgba(255,255,255,0.7);font-size:1.05rem;max-width:560px;line-height:1.8;margin-bottom:2rem;">
+        <p style="color:#ffffff; font-size:1.1rem; max-width:580px; line-height:1.8; margin-bottom:2rem; text-shadow: 0 2px 12px rgba(0,0,0,0.8); font-weight: 500;">
           Seven days of noble silence, ancient Vipassana practice, and deep forest immersion. Surrender the noise. Discover the stillness beneath.
         </p>
-        <div class="d-flex flex-wrap gap-4" style="color:rgba(255,255,255,0.85);font-size:0.88rem;">
-          <div><span style="color:rgba(255,255,255,0.7);display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;">Next Date</span>Jan 15 – Jan 21, 2025</div>
-          <div><span style="color:rgba(255,255,255,0.7);display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;">Group Size</span>Max 12 Guests</div>
-          <div><span style="color:rgba(255,255,255,0.7);display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;">Difficulty</span>Moderate</div>
-          <div><span style="color:rgba(255,255,255,0.7);display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;">Meals</span>All Included</div>
+        <div class="d-flex flex-wrap gap-4" style="color:#ffffff; font-size:0.9rem; text-shadow: 0 2px 8px rgba(0,0,0,1);">
+          <div><span style="color:rgba(255,255,255,0.8);display:block;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">Next Date</span><span style="font-weight:600;">Jan 15 – Jan 21, 2025</span></div>
+          <div><span style="color:rgba(255,255,255,0.8);display:block;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">Group Size</span><span style="font-weight:600;">Max 12 Guests</span></div>
+          <div><span style="color:rgba(255,255,255,0.8);display:block;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">Difficulty</span><span style="font-weight:600;">Moderate</span></div>
+          <div><span style="color:rgba(255,255,255,0.8);display:block;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">Meals</span><span style="font-weight:600;">All Included</span></div>
         </div>
       </div>
     </div>
@@ -82,6 +106,7 @@
 </div>
 
 <!-- MAIN CONTENT -->
+<div class="itinerary-background-wrap">
 <section class="section-pad">
   <div class="container">
     <div class="row g-5">
@@ -210,8 +235,10 @@
           </div>
 
           <!-- What's Included -->
-          <div class="dashboard-card mb-4 animate-on-scroll animate-delay-1">
-            <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:1rem;">What's Included</h4>
+          <div class="dashboard-card mb-4 animate-on-scroll animate-delay-1 overflow-hidden p-0">
+            <img src="../assets/img/nature/luxury-retreat.png" class="w-100 object-fit-cover" style="height:140px;" alt="Retreat Setting">
+            <div class="p-4">
+              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:1rem;">What's Included</h4>
             <div class="included-item"><span class="included-check">✓</span> 6 nights private forest cabin accommodation</div>
             <div class="included-item"><span class="included-check">✓</span> All meals (plant-based, organic, farm-to-table)</div>
             <div class="included-item"><span class="included-check">✓</span> Daily guided Vipassana meditation sessions</div>
@@ -222,6 +249,7 @@
             <div class="included-item"><span class="included-check">✓</span> Fire ceremony</div>
             <div class="included-item"><span class="included-check">✓</span> Integration guide & meditation schedule</div>
             <div class="included-item" style="border:none;color:var(--accent);"><span>✗</span> Airport transfers (add-on available)</div>
+            </div>
           </div>
 
           <!-- Add-ons Teaser -->
@@ -235,6 +263,20 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CLOSING REFLECTION -->
+<section class="section-pad position-relative overflow-hidden" style="background-image: url('../assets/img/nature/evening-reflection.png'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center;">
+  <div class="position-absolute inset-0" style="background: linear-gradient(to right, rgba(13, 36, 22, 0.8), transparent);"></div>
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="col-lg-6">
+      <div class="section-label" style="color:#cdf0de; text-shadow: 0 1px 4px rgba(0,0,0,0.3);">✦ Closing Thought ✦</div>
+      <h2 class="text-white mb-4" style="font-family:'Cormorant Garamond',serif; font-size: 2.7rem; text-shadow: 0 2px 15px rgba(0,0,0,0.4);">The silence is not empty.<br><em style="color:var(--secondary);">It is full of answers.</em></h2>
+      <p class="text-white mb-4" style="color:rgba(255,255,255,0.9); text-shadow: 0 1px 8px rgba(0,0,0,0.4);">Are you ready to meet yourself in the stillness? Spots for our January retreat are filling fast.</p>
+      <a href="booking.html" class="btn-primary-retreat glow text-decoration-none">Secure Your Spot →</a>
     </div>
   </div>
 </section>
