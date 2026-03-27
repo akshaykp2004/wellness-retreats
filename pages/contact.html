@@ -10,18 +10,36 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
     .contact-hero {
-      padding: 9rem 0 4rem;
-      background: linear-gradient(160deg, #0d2416 0%, #1a4028 60%, #2a5038 100%);
+      padding: 10rem 0 6rem;
+      background: #0d2416;
       text-align: center;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .contact-hero::before {
-      content: '';
+    .contact-hero-bg {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 60%, rgba(46, 139, 87, 0.2), transparent 70%);
+      background-image: url('../assets/img/contact/hero.png');
+      background-size: cover;
+      background-position: center;
+      transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: 0;
+    }
+
+    .contact-hero:hover .contact-hero-bg {
+      transform: scale(1.08);
+    }
+
+    .contact-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(13, 36, 22, 0.5), rgba(13, 36, 22, 0.75));
+      backdrop-filter: blur(1px);
+      z-index: 1;
     }
 
     .contact-info-card {
@@ -197,13 +215,15 @@
 
   <!-- HERO -->
   <div class="contact-hero">
+    <div class="contact-hero-bg"></div>
+    <div class="contact-hero-overlay"></div>
     <div class="container position-relative" style="z-index: 2;">
-      <div class="hero-badge mb-3">✦ We'd Love to Hear from You ✦</div>
+      <div class="hero-badge mb-3" style="color:var(--secondary); border-color:rgba(212,196,183,0.3);">✦ We'd Love to Hear from You ✦</div>
       <h1
-        style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);color:#fff;font-weight:300;margin-bottom:1rem;">
+        style="font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5rem);color:#fff;font-weight:300;margin-bottom:1.5rem;line-height:1.1;">
         Get in <em style="color:var(--secondary);">Touch</em>
       </h1>
-      <p style="color:rgba(255,255,255,0.85);font-size:1rem;max-width:500px;margin:0 auto;line-height:1.8;">
+      <p style="color:rgba(255,255,255,0.9);font-size:1.1rem;max-width:550px;margin:0 auto;line-height:1.8;font-weight:300;">
         Have a question? Curious about a program? Need help choosing? Our team responds with care — usually within one
         business day.
       </p>

@@ -10,40 +10,61 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
     .about-hero {
-      padding: 9rem 0 5rem;
-      background: linear-gradient(160deg, #0d2416 0%, #1a4028 50%, #2a5a38 100%);
+      padding: 12rem 0 8rem;
+      background: #0d2416;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .about-hero::before {
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../assets/img/about/hero.png');
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 0;
+    }
+
+    .about-hero:hover .about-hero-bg {
+      transform: scale(1.05);
+    }
+
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(13, 36, 22, 0.6), rgba(13, 36, 22, 0.8));
+      backdrop-filter: blur(2px);
+      z-index: 1;
+    }
+
+    /* Leaf Texture Backgrounds */
+    .leaf-texture {
+      position: relative;
+    }
+
+    .leaf-texture::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 80% 30%, rgba(46, 139, 87, 0.2), transparent 60%),
-        radial-gradient(ellipse 50% 70% at 20% 70%, rgba(212, 196, 183, 0.08), transparent 60%);
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 20c15 0 25 15 25 30s-10 30-25 30-25-15-25-30 10-30 25-30z' fill='%232e8b57' fill-opacity='0.03'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: -1;
     }
 
     .philosophy-block {
       background: var(--card-bg);
-      border-radius: 20px;
-      padding: 2.5rem;
+      border-radius: 24px;
+      padding: 3rem;
       border: 1px solid var(--card-border);
-      box-shadow: 0 2px 20px var(--shadow);
+      box-shadow: 0 10px 40px var(--shadow);
       position: relative;
       overflow: hidden;
-    }
-
-    .philosophy-block::before {
-      content: '"';
-      position: absolute;
-      top: -1rem;
-      left: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 8rem;
-      color: var(--primary);
-      opacity: 0.08;
-      line-height: 1;
+      z-index: 1;
     }
 
     .guide-card {
@@ -51,150 +72,196 @@
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--card-border);
-      box-shadow: 0 2px 20px var(--shadow);
-      transition: all 0.35s ease;
+      box-shadow: 0 5px 25px var(--shadow);
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .guide-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px var(--shadow-deep);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px var(--shadow-deep);
       border-color: var(--primary);
     }
 
     .guide-header {
-      height: 140px;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.25rem;
+      height: 200px;
+      overflow: hidden;
       position: relative;
     }
 
-    .guide-header-1 {
-      background: linear-gradient(160deg, #0d2416, #2E8B57);
+    .guide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
     }
 
-    .guide-header-2 {
-      background: linear-gradient(160deg, #1a2d3d, #778899);
+    .guide-card:hover .guide-img {
+      transform: scale(1.1);
     }
 
-    .guide-header-3 {
-      background: linear-gradient(160deg, #2d1a0d, #8B6542);
-    }
-
-    .guide-header-4 {
-      background: linear-gradient(160deg, #1a0d2d, #6B4F8B);
+    .guide-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(transparent, var(--card-bg));
     }
 
     .guide-avatar {
-      width: 72px;
-      height: 72px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      border: 3px solid #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
+      border: 4px solid var(--card-bg);
+      overflow: hidden;
       position: absolute;
-      bottom: -36px;
+      bottom: -45px;
       left: 1.5rem;
+      z-index: 2;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .guide-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .guide-body {
-      padding: 3rem 1.5rem 1.5rem;
-    }
-
-    .guide-specialty {
-      display: inline-block;
-      background: rgba(46, 139, 87, 0.1);
-      color: var(--primary);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.75rem;
-      border-radius: 50px;
-      margin-bottom: 0.5rem;
+      padding: 4rem 1.5rem 2rem;
     }
 
     .facility-item {
       display: flex;
-      gap: 1.25rem;
-      padding: 1.5rem;
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
       background: var(--card-bg);
-      border-radius: 16px;
+      border-radius: 20px;
       border: 1px solid var(--card-border);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+      overflow: hidden;
+      height: 100%;
     }
 
     .facility-item:hover {
       border-color: var(--primary);
-      box-shadow: 0 4px 20px var(--shadow);
+      box-shadow: 0 10px 30px var(--shadow);
+      transform: translateY(-5px);
     }
 
-    .facility-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: rgba(46, 139, 87, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
+    .facility-image-wrap {
+      height: 180px;
+      width: 100%;
+      overflow: hidden;
     }
 
-    .value-card {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      background: var(--card-bg);
-      border-radius: 18px;
-      border: 1px solid var(--card-border);
-      transition: all 0.3s ease;
+    .facility-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
 
-    .value-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px var(--shadow-deep);
+    .facility-item:hover .facility-img {
+      transform: scale(1.08);
     }
 
-    .value-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: block;
+    .facility-content {
+      padding: 1.5rem;
     }
 
     .trail-card {
       background: var(--card-bg);
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--card-border);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+      height: 100%;
     }
 
     .trail-card:hover {
       border-color: var(--primary);
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px var(--shadow-deep);
+    }
+
+    .trail-img-wrap {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
     }
 
     .trail-img {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    .trail-1 {
-      background: linear-gradient(135deg, #0d2416, #1a5c30, #3a9e60);
+    .trail-card:hover .trail-img {
+      transform: scale(1.1);
     }
 
-    .trail-2 {
-      background: linear-gradient(135deg, #1a1a0d, #3d3d1a, #6e6e30);
+    .trail-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.4));
     }
 
-    .trail-3 {
-      background: linear-gradient(135deg, #0d1a2d, #1a3a5c, #3a6e9e);
+    .btn-retreat-glow {
+      box-shadow: 0 0 0 0 rgba(46, 139, 87, 0.4);
+      animation: button-pulse 2s infinite;
     }
+
+    @keyframes button-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(46, 139, 87, 0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(46, 139, 87, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 139, 87, 0); }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Section Background Alternation — Theme Aware */
+    .bg-dark-forest { 
+      background-color: #0d2416; 
+      color: #fff; 
+    }
+    body.dark-mode .bg-dark-forest { 
+      background-color: #08100b; 
+    }
+
+    .bg-light-forest { 
+      background-color: var(--bg-section); 
+      color: var(--text-primary);
+    }
+    .bg-neutral-beige { 
+      background-color: var(--bg-body); 
+      color: var(--text-primary);
+    }
+
+    body.dark-mode .philosophy-block {
+      background: #1e2a22;
+      border-color: rgba(58, 172, 109, 0.2);
+    }
+
+    body.dark-mode .leaf-texture::after {
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 20c15 0 25 15 25 30s-10 30-25 30-25-15-25-30 10-30 25-30z' fill='%23ffffff' fill-opacity='0.02'/%3E%3C/svg%3E");
+    }
+
 
     .timeline-about {
       position: relative;
@@ -266,16 +333,18 @@
 
   <!-- ABOUT HERO -->
   <div class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-overlay"></div>
     <div class="container position-relative" style="z-index: 2;">
       <div class="row justify-content-center text-center">
-        <div class="col-lg-7">
-          <div class="hero-badge mb-3">✦ Est. 2016 · Forest Sanctuary ✦</div>
+        <div class="col-lg-8">
+          <div class="hero-badge mb-3" style="color:var(--secondary); border-color:rgba(212,196,183,0.3);">✦ Est. 2016 · Forest Sanctuary ✦</div>
           <h1
-            style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;font-weight:300;margin-bottom:1.25rem;line-height:1.15;">
+            style="font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);color:#fff;font-weight:300;margin-bottom:1.5rem;line-height:1.1;">
             Born from a<br><em style="color:var(--secondary);">Longing for Stillness</em>
           </h1>
           <p
-            style="color:rgba(255,255,255,0.85);font-size:1.05rem;max-width:540px;margin:0 auto;line-height:1.8;font-weight:300;">
+            style="color:rgba(255,255,255,0.9);font-size:1.15rem;max-width:600px;margin:0 auto;line-height:1.8;font-weight:300;">
             We are healers, dreamers, and forest guardians who built a sanctuary where the modern world cannot follow.
             Our mission is simple: help humans remember how to be human.
           </p>
@@ -285,78 +354,62 @@
   </div>
 
   <!-- PHILOSOPHY -->
-  <section class="section-pad">
+  <section class="section-pad bg-neutral-beige leaf-texture">
     <div class="container">
       <div class="row align-items-center g-5">
         <div class="col-lg-6 animate-on-scroll">
           <div class="section-label">Our Philosophy</div>
           <h2 class="section-title">We Believe in the<br><em style="color:var(--primary);">Healing Power of
               Presence</em></h2>
-          <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:1.25rem;">
+          <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:1.25rem;font-size: 1.05rem;">
             In a world that demands constant connectivity, Serene Retreat offers the radical act of disconnection. We
             believe that beneath the noise of notifications, emails, and endless scrolling lives a version of you that
             is whole, rested, and deeply alive.
           </p>
-          <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:2rem;">
+          <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:2rem;font-size: 1.05rem;">
             Our approach weaves together ancient wisdom — Vipassana, Ayurveda, forest medicine, yoga — with modern
             neuroscience and trauma-informed care. The result is not a holiday. It is a homecoming.
           </p>
           <div class="row g-3">
             <div class="col-6">
               <div
-                style="padding:1.25rem;background:rgba(46,139,87,0.06);border-radius:14px;border:1px solid rgba(46,139,87,0.15);">
-                <div style="font-size:1.6rem;margin-bottom:0.4rem;">🌲</div>
-                <div style="font-weight:700;font-size:0.9rem;color:var(--text-primary);margin-bottom:0.2rem;">Nature as
+                style="padding:1.5rem;background:var(--card-bg);border-radius:18px;border:1px solid var(--card-border);box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+                <div style="font-size:1.8rem;margin-bottom:0.4rem;">🌲</div>
+                <div style="font-weight:700;font-size:0.95rem;color:var(--text-primary);margin-bottom:0.2rem;">Nature as
                   Medicine</div>
                 <div style="font-size:0.8rem;color:var(--text-muted);">200 acres of ancient forest</div>
               </div>
             </div>
             <div class="col-6">
               <div
-                style="padding:1.25rem;background:rgba(46,139,87,0.06);border-radius:14px;border:1px solid rgba(46,139,87,0.15);">
-                <div style="font-size:1.6rem;margin-bottom:0.4rem;">🧘</div>
-                <div style="font-weight:700;font-size:0.9rem;color:var(--text-primary);margin-bottom:0.2rem;">Ancient +
+                style="padding:1.5rem;background:var(--card-bg);border-radius:18px;border:1px solid var(--card-border);box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+                <div style="font-size:1.8rem;margin-bottom:0.4rem;">🧘</div>
+                <div style="font-weight:700;font-size:0.95rem;color:var(--text-primary);margin-bottom:0.2rem;">Ancient +
                   Modern</div>
                 <div style="font-size:0.8rem;color:var(--text-muted);">Wisdom meets science</div>
               </div>
             </div>
-            <div class="col-6">
+          </div>
+        </div>
+        <div class="col-lg-6 animate-on-scroll">
+          <div class="philosophy-block">
+            <p
+              style="font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-style:italic;color:var(--text-secondary);line-height:1.8;margin-bottom:2rem;">
+              "We do not offer you an escape from your life. We offer you a return to it — more grounded, more present,
+              more yourself than you have been in years."
+            </p>
+            <div style="display:flex;align-items:center;gap:1.25rem;">
               <div
-                style="padding:1.25rem;background:rgba(46,139,87,0.06);border-radius:14px;border:1px solid rgba(46,139,87,0.15);">
-                <div style="font-size:1.6rem;margin-bottom:0.4rem;">🔕</div>
-                <div style="font-weight:700;font-size:0.9rem;color:var(--text-primary);margin-bottom:0.2rem;">Truly
-                  Screen-Free</div>
-                <div style="font-size:0.8rem;color:var(--text-muted);">No WiFi. No exceptions.</div>
+                style="width:60px;height:60px;border-radius:50%;overflow:hidden;border:2px solid var(--primary);">
+                <img src="../assets/img/about/guide-vipassana.png" alt="Dr. Amara Osei" style="width:100%;height:100%;object-fit:cover;">
               </div>
-            </div>
-            <div class="col-6">
-              <div
-                style="padding:1.25rem;background:rgba(46,139,87,0.06);border-radius:14px;border:1px solid rgba(46,139,87,0.15);">
-                <div style="font-size:1.6rem;margin-bottom:0.4rem;">🌱</div>
-                <div style="font-weight:700;font-size:0.9rem;color:var(--text-primary);margin-bottom:0.2rem;">
-                  Sustainable Living</div>
-                <div style="font-size:0.8rem;color:var(--text-muted);">100% off-grid & organic</div>
+              <div>
+                <div style="font-weight:700;color:var(--text-primary);font-size:1.1rem;">Dr. Amara Osei</div>
+                <div style="font-size:0.85rem;color:var(--text-muted);">Founder & Lead Meditation Teacher</div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 animate-on-scroll animate-delay-1">
-          <div class="philosophy-block">
-            <p
-              style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">
-              "We do not offer you an escape from your life. We offer you a return to it — more grounded, more present,
-              more yourself than you have been in years."
-            </p>
-            <div style="display:flex;align-items:center;gap:1rem;">
-              <div
-                style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">
-                🌸</div>
-              <div>
-                <div style="font-weight:700;color:var(--text-primary);">Dr. Amara Osei</div>
-                <div style="font-size:0.8rem;color:var(--text-muted);">Founder & Lead Meditation Teacher</div>
-              </div>
-            </div>
-          </div>
 
           <!-- History Timeline -->
           <div class="mt-4">
@@ -396,7 +449,7 @@
   </section>
 
   <!-- MEET OUR GUIDES -->
-  <section class="section-pad bg-sand">
+  <section class="section-pad bg-light-forest">
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-6 text-center animate-on-scroll">
@@ -412,87 +465,79 @@
         <!-- Guide 1 -->
         <div class="col-sm-6 col-lg-3 animate-on-scroll">
           <div class="guide-card">
-            <div class="guide-header guide-header-1">
-              <div class="guide-avatar" style="background:linear-gradient(135deg,#1a5c30,#3a9e60);">🌸</div>
+            <div class="guide-header">
+              <img src="../assets/img/about/guide-vipassana.png" alt="Vipassana Guide" class="guide-img">
+              <div class="guide-avatar">
+                <img src="../assets/img/about/guide-vipassana.png" alt="Avatar">
+              </div>
             </div>
             <div class="guide-body">
               <span class="guide-specialty">Vipassana & Mindfulness</span>
-              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:0.2rem;">Dr. Amara Osei
+              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:0.2rem;font-weight:600;">Dr. Amara Osei
               </h4>
-              <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.75rem;">Founder · 18 years practice
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;">Founder · 18 years practice
               </div>
-              <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">Studied under Goenka tradition
-                in India and Myanmar. Specializes in trauma-informed meditation and nervous system healing.</p>
-              <div
-                style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);">
-                📍 Accra · London · Forest
-              </div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">Studied under Goenka tradition
+                in India and Myanmar. Specializes in trauma-informed meditation.</p>
             </div>
           </div>
         </div>
 
         <!-- Guide 2 -->
-        <div class="col-sm-6 col-lg-3 animate-on-scroll animate-delay-1">
+        <div class="col-sm-6 col-lg-3 animate-on-scroll" style="transition-delay: 0.1s;">
           <div class="guide-card">
-            <div class="guide-header guide-header-2">
-              <div class="guide-avatar" style="background:linear-gradient(135deg,#1a3d5c,#4a8ea0);">🌊</div>
+            <div class="guide-header">
+              <img src="../assets/img/about/guide-yoga.png" alt="Yoga Instructor" class="guide-img">
+              <div class="guide-avatar">
+                <img src="../assets/img/about/guide-yoga.png" alt="Avatar">
+              </div>
             </div>
             <div class="guide-body">
               <span class="guide-specialty">Yoga & Breathwork</span>
-              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:0.2rem;">Kavya Nair</h4>
-              <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.75rem;">Lead Yoga Teacher · 12 years
+              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:0.2rem;font-weight:600;">Kavya Nair</h4>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;">Lead Yoga Teacher · 12 years
               </div>
-              <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">Iyengar and Yin Yoga certified.
-                Pranayama specialist and certified Wim Hof breathwork instructor. Gentle and precise.</p>
-              <div
-                style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);">
-                📍 Kerala · Amsterdam · Forest
-              </div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">Iyengar and Yin Yoga certified.
+                Pranayama specialist and certified breathwork instructor.</p>
             </div>
           </div>
         </div>
 
         <!-- Guide 3 -->
-        <div class="col-sm-6 col-lg-3 animate-on-scroll animate-delay-2">
+        <div class="col-sm-6 col-lg-3 animate-on-scroll" style="transition-delay: 0.2s;">
           <div class="guide-card">
-            <div class="guide-header guide-header-3">
-              <div class="guide-avatar" style="background:linear-gradient(135deg,#5c3a1a,#a07040);">🌿</div>
+            <div class="guide-header">
+              <img src="../assets/img/about/guide-ayurveda.png" alt="Ayurveda Expert" class="guide-img">
+              <div class="guide-avatar">
+                <img src="../assets/img/about/guide-ayurveda.png" alt="Avatar">
+              </div>
             </div>
             <div class="guide-body">
               <span class="guide-specialty">Ayurveda & Nutrition</span>
-              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:0.2rem;">Rajan Mehta
+              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:0.2rem;font-weight:600;">Rajan Mehta
               </h4>
-              <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.75rem;">Ayurvedic Practitioner · 20
-                years</div>
-              <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">BAMS certified Ayurvedic doctor,
-                nutritionist, and chef. Designs all retreat menus to align with individual doshas and healing goals.</p>
-              <div
-                style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);">
-                📍 Pune · Toronto · Forest
-              </div>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;">Ayurvedic Practitioner · 20 years</div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">BAMS certified Ayurvedic doctor. Designs all retreat menus to align with individual doshas.</p>
             </div>
           </div>
         </div>
 
         <!-- Guide 4 -->
-        <div class="col-sm-6 col-lg-3 animate-on-scroll animate-delay-3">
+        <div class="col-sm-6 col-lg-3 animate-on-scroll" style="transition-delay: 0.3s;">
           <div class="guide-card">
-            <div class="guide-header guide-header-4">
-              <div class="guide-avatar" style="background:linear-gradient(135deg,#3a1a5c,#7a4e9e);">🎵</div>
+            <div class="guide-header">
+              <img src="../assets/img/about/guide-sound.png" alt="Sound Healer" class="guide-img">
+              <div class="guide-avatar">
+                <img src="../assets/img/about/guide-sound.png" alt="Avatar">
+              </div>
             </div>
             <div class="guide-body">
               <span class="guide-specialty">Sound Healing & Therapy</span>
-              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:0.2rem;">Lena Brandt
+              <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:0.2rem;font-weight:600;">Lena Brandt
               </h4>
-              <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.75rem;">Sound Healer ·
-                Psychotherapist</div>
-              <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.7;">Masters in Music Therapy.
-                Tibetan bowl lineage holder. Integrates somatic therapy with sound frequency to release stored trauma.
-              </p>
-              <div
-                style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);">
-                📍 Berlin · Bali · Forest
-              </div>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;">Sound Healer · Psychotherapist</div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.7;">Masters in Music Therapy.
+                Tibetan bowl lineage holder. Integrates somatic therapy with sound.</p>
             </div>
           </div>
         </div>
@@ -502,7 +547,7 @@
   </section>
 
   <!-- THE FACILITY -->
-  <section class="section-pad">
+  <section class="section-pad bg-neutral-beige">
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-6 text-center animate-on-scroll">
@@ -515,120 +560,102 @@
       </div>
 
       <div class="row g-4 mb-5">
-        <div class="col-md-6 col-lg-4 animate-on-scroll">
+        <div class="col-md-4 animate-on-scroll">
           <div class="facility-item">
-            <div class="facility-icon">🏡</div>
-            <div>
-              <h5 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem;">12 Private Forest Cabins</h5>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">Hand-built from
-                reclaimed cedar. Each cabin overlooks a private forest clearing with a meditation deck.</p>
+            <div class="facility-image-wrap">
+              <img src="../assets/img/about/facility-farm.png" alt="Dining Hall" class="facility-img">
+            </div>
+            <div class="facility-content">
+              <h5 style="font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Cormorant Garamond',serif;">Farm-to-Table Dining</h5>
+              <p style="font-size:0.88rem;color:var(--text-secondary);margin:0;line-height:1.6;">Open-air, fire-lit. All produce grown on our 5-acre organic farm. Zero processed food.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 animate-on-scroll animate-delay-1">
+        <div class="col-md-4 animate-on-scroll" style="transition-delay: 0.1s;">
           <div class="facility-item">
-            <div class="facility-icon">🧘</div>
-            <div>
-              <h5 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem;">Main Meditation Hall</h5>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">2,000 sq ft of silent
-                space. Earthen floor, natural light, surrounded by ancient oak trees on all sides.</p>
+            <div class="facility-image-wrap">
+              <img src="../assets/img/about/facility-garden.png" alt="Herbal Garden" class="facility-img">
+            </div>
+            <div class="facility-content">
+              <h5 style="font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Cormorant Garamond',serif;">Herbal Medicine Garden</h5>
+              <p style="font-size:0.88rem;color:var(--text-secondary);margin:0;line-height:1.6;">Over 80 medicinal plants. Guests are invited to harvest, learn, and prepare their own teas.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 animate-on-scroll animate-delay-2">
+        <div class="col-md-4 animate-on-scroll" style="transition-delay: 0.2s;">
           <div class="facility-item">
-            <div class="facility-icon">🌊</div>
-            <div>
-              <h5 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem;">Natural Stone Pool</h5>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">Fed by a natural
-                spring. Mineral-rich water, no chemicals. Open from 6 AM – 9 PM daily.</p>
+            <div class="facility-image-wrap">
+              <img src="../assets/img/about/facility-healing.png" alt="Healing Center" class="facility-img">
             </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 animate-on-scroll">
-          <div class="facility-item">
-            <div class="facility-icon">🍽️</div>
-            <div>
-              <h5 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem;">Farm-to-Table Dining Hall</h5>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">Open-air, fire-lit. All
-                produce grown on our 5-acre organic farm. Zero processed food. Ever.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 animate-on-scroll animate-delay-1">
-          <div class="facility-item">
-            <div class="facility-icon">🌿</div>
-            <div>
-              <h5 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem;">Herbal Medicine Garden</h5>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">Over 80 medicinal
-                plants. Guests are invited to harvest, learn, and prepare their own herbal teas.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 animate-on-scroll animate-delay-2">
-          <div class="facility-item">
-            <div class="facility-icon">💆</div>
-            <div>
-              <h5 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem;">Healing Arts Center</h5>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;line-height:1.6;">4 private treatment
-                rooms. Massage, Ayurvedic therapies, sound healing, and counseling sessions.</p>
+            <div class="facility-content">
+              <h5 style="font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Cormorant Garamond',serif;">Healing Arts Center</h5>
+              <p style="font-size:0.88rem;color:var(--text-secondary);margin:0;line-height:1.6;">Massage, Ayurvedic therapies, sound healing, and counseling in private treatment rooms.</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Nature Trails -->
-      <div class="row justify-content-center mb-4">
+      <div class="row justify-content-center mb-4 pt-5">
         <div class="col-lg-6 text-center animate-on-scroll">
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:0.5rem;">Forest Trails</h3>
-          <p style="font-size:0.88rem;color:var(--text-muted);">Three immersive walking paths through our ancient forest
-            sanctuary.</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;margin-bottom:0.75rem;">Forest Trails</h3>
+          <p style="font-size:1rem;color:var(--text-muted);max-width:500px;margin:0 auto 2rem;">Three immersive walking paths through our ancient forest sanctuary.</p>
         </div>
       </div>
       <div class="row g-4">
         <div class="col-md-4 animate-on-scroll">
           <div class="trail-card">
-            <div class="trail-img trail-1">🌲</div>
-            <div style="padding:1.25rem;">
-              <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem;">The Ancestor
-                Path</h5>
-              <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.5rem;">2.5 km · Easy · 45 min</div>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;">A gentle loop through the oldest trees.
-                Silent walking practice. Dawn and dusk magic.</p>
+            <div class="trail-img-wrap">
+              <img src="../assets/img/about/trail-ancestor.png" alt="Ancestor Path" class="trail-img">
+              <div class="trail-overlay"></div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4 animate-on-scroll animate-delay-1">
-          <div class="trail-card">
-            <div class="trail-img trail-2">🌾</div>
-            <div style="padding:1.25rem;">
-              <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem;">The Meadow Walk
-              </h5>
-              <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.5rem;">1.8 km · Easy · 30 min</div>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;">Opens to a wildflower meadow with views
-                of the valley. Perfect for morning metta practice.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 animate-on-scroll animate-delay-2">
-          <div class="trail-card">
-            <div class="trail-img trail-3">⛰️</div>
-            <div style="padding:1.25rem;">
-              <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:0.3rem;">The Summit Trail
-              </h5>
-              <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.5rem;">4.2 km · Moderate · 90 min
+            <div style="padding:1.5rem;">
+              <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:0.5rem;font-weight:600;">The Ancestor Path</h5>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
+                <span>⏱ 45 min</span> • <span>📈 Easy</span> • <span>📍 2.5 km</span>
               </div>
-              <p style="font-size:0.83rem;color:var(--text-secondary);margin:0;">Ascends to a rocky outlook with a 360°
-                forest panorama. Sunrise hike optional every 3rd day.</p>
+              <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.6;">A gentle loop through the oldest trees. Silent walking practice amidst morning mist.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll" style="transition-delay:0.1s;">
+          <div class="trail-card">
+            <div class="trail-img-wrap">
+              <img src="../assets/img/about/trail-meadow.png" alt="Meadow Walk" class="trail-img">
+              <div class="trail-overlay"></div>
+            </div>
+            <div style="padding:1.5rem;">
+              <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:0.5rem;font-weight:600;">The Meadow Walk</h5>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
+                <span>⏱ 30 min</span> • <span>📈 Easy</span> • <span>📍 1.8 km</span>
+              </div>
+              <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.6;">Opens to a wildflower meadow with valley views. Perfect for morning meditation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll" style="transition-delay:0.2s;">
+          <div class="trail-card">
+            <div class="trail-img-wrap">
+              <img src="../assets/img/about/trail-summit.png" alt="Summit Trail" class="trail-img">
+              <div class="trail-overlay"></div>
+            </div>
+            <div style="padding:1.5rem;">
+              <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:0.5rem;font-weight:600;">The Summit Trail</h5>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
+                <span>⏱ 90 min</span> • <span>📈 Moderate</span> • <span>📍 4.2 km</span>
+              </div>
+              <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.6;">Ascends to a rocky outlook with a 360° panorama. Sunrise hikes every 3rd day.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+    </div>
+  </section>
 
   <!-- VALUES -->
-  <section class="section-pad bg-sand">
+  <section class="section-pad bg-light-forest">
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-6 text-center animate-on-scroll">
@@ -677,29 +704,47 @@
 
   <!-- CTA -->
   <section
-    style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:5rem 0;position:relative;overflow:hidden;">
-    <div class="container text-center position-relative">
+    style="background:#0d2416;padding:8rem 0;position:relative;overflow:hidden;">
+    <div class="about-hero-bg" style="opacity: 0.3; background-image: url('../assets/img/about/hero.png');"></div>
+    <div class="container text-center position-relative" style="z-index: 2;">
       <div class="animate-on-scroll">
         <h2
-          style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;font-weight:400;margin-bottom:1.25rem;">
-          Ready to Meet<br><em>Your Guides?</em>
+          style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);color:#fff;font-weight:400;margin-bottom:1.5rem;">
+          Ready to Meet<br><em style="color:var(--secondary);">Your Guides?</em>
         </h2>
-        <p style="color:rgba(255,255,255,0.75);max-width:460px;margin:0 auto 2rem;font-size:1rem;">
+        <p style="color:rgba(255,255,255,0.85);max-width:500px;margin:0 auto 3rem;font-size:1.1rem;font-weight:300;">
           Your healer is waiting. Your silence is ready. All you have to do is arrive.
         </p>
-        <div class="d-flex gap-3 justify-content-center flex-wrap">
-          <a href="booking.html" class="btn-outline-retreat text-decoration-none"
-            style="color:#fff;border-color:rgba(255,255,255,0.5);">
+        <div class="d-flex gap-4 justify-content-center flex-wrap">
+          <a href="booking.html" class="btn-primary-retreat btn-retreat-glow text-decoration-none"
+            style="padding: 1rem 2.5rem; font-size: 1.1rem;">
             🌿 Book Your Retreat
           </a>
-          <a href="contact.html" class="text-decoration-none"
-            style="color:rgba(255,255,255,0.9);display:inline-flex;align-items:center;gap:0.5rem;font-weight:500;padding:0.85rem 1.5rem;">
+          <a href="contact.html" class="btn-outline-retreat text-decoration-none"
+            style="padding: 1rem 2.5rem; font-size: 1.1rem; color:#fff; border-color:rgba(255,255,255,0.4);">
             Ask a Question →
           </a>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  </script>
 
   <div id="footer-placeholder"></div>
 
