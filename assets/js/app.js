@@ -5,28 +5,29 @@
 // Theme Engine
 const ThemeEngine = {
   init() {
-    const saved = localStorage.getItem('retreat-theme') || 'light';
-    if (saved === 'dark') this.enable();
+    const saved = localStorage.getItem('retreat-theme') || 'dark';
+    if (saved === 'bright') this.enable();
+    else this.disable(); // Ensure icons match dark default
     this.bindToggle();
   },
   enable() {
-    document.body.classList.add('dark-mode');
-    document.querySelectorAll('.theme-icon').forEach(el => {
-      el.innerHTML = '☀️';
-      el.title = 'Switch to Light Mode';
-    });
-    localStorage.setItem('retreat-theme', 'dark');
-  },
-  disable() {
-    document.body.classList.remove('dark-mode');
+    document.body.classList.add('bright-mode');
     document.querySelectorAll('.theme-icon').forEach(el => {
       el.innerHTML = '🌙';
       el.title = 'Switch to Dark Mode';
     });
-    localStorage.setItem('retreat-theme', 'light');
+    localStorage.setItem('retreat-theme', 'bright');
+  },
+  disable() {
+    document.body.classList.remove('bright-mode');
+    document.querySelectorAll('.theme-icon').forEach(el => {
+      el.innerHTML = '☀️';
+      el.title = 'Switch to Bright Mode';
+    });
+    localStorage.setItem('retreat-theme', 'dark');
   },
   toggle() {
-    document.body.classList.contains('dark-mode') ? this.disable() : this.enable();
+    document.body.classList.contains('bright-mode') ? this.disable() : this.enable();
   },
   bindToggle() {
     document.querySelectorAll('.theme-toggle').forEach(btn => {

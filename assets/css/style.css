@@ -5,37 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #7097BB;
-  --primary-light: #A1C4E1;
-  --primary-dark: #4A6D8E;
-  --secondary: #D4C4B7;
-  --accent: #778899;
-  --dark: #1C2520;
-  --light: #FBFBF9;
-  --sand: #f0e8e0;
-  --muted: #8a9e92;
-  --card-bg: #ffffff;
-  --card-border: rgba(46, 139, 87, 0.1);
-  --shadow: rgba(28, 37, 32, 0.08);
-  --shadow-deep: rgba(28, 37, 32, 0.18);
-  --text-primary: #1C2520;
-  --text-secondary: #5a6b60;
-  --text-muted: #8a9e92;
-  --bg-body: #FBFBF9;
-  --bg-section: #f5f0eb;
-  --nav-bg: rgba(251, 251, 249, 0.95);
-  --border: rgba(212, 196, 183, 0.4);
-  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* DARK MODE */
-body.dark-mode {
   --primary: #A1C4E1;
   --primary-light: #C5D9EB;
   --primary-dark: #7097BB;
   --secondary: #E5D9D0;
-  /* Kept light for accents on dark backgrounds */
   --accent: #a5b4c2;
+  --dark: #1C2520;
+  --light: #FBFBF9;
+  --sand: #f0e8e0;
+  --muted: #8a9e92;
   --card-bg: #1e2a22;
   --card-border: rgba(58, 172, 109, 0.12);
   --shadow: rgba(0, 0, 0, 0.25);
@@ -45,17 +23,38 @@ body.dark-mode {
   --text-muted: #abbfb0;
   --bg-body: #111a14;
   --bg-section: #162018;
-  --nav-bg: rgba(17, 26, 20, 0.96);
+  --nav-bg: #111a14;
   --border: rgba(58, 172, 109, 0.15);
+  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* BRIGHT MODE */
+body.bright-mode {
+  --primary: #7097BB;
+  --primary-light: #A1C4E1;
+  --primary-dark: #4A6D8E;
+  --secondary: #D4C4B7;
+  --accent: #778899;
+  --card-bg: #ffffff;
+  --card-border: rgba(46, 139, 87, 0.1);
+  --shadow: rgba(28, 37, 32, 0.08);
+  --shadow-deep: rgba(28, 37, 32, 0.18);
+  --text-primary: #1C2520;
+  --text-secondary: #5a6b60;
+  --text-muted: #8a9e92;
+  --bg-body: #FBFBF9;
+  --bg-section: #f5f0eb;
+  --nav-bg: #FBFBF9;
+  --border: rgba(212, 196, 183, 0.4);
 }
 
 /* Fix for Bootstrap Close Button in Dark Mode */
-body.dark-mode .btn-close {
+body.bright-mode .btn-close {
   filter: invert(1) grayscale(100%) brightness(200%);
 }
 
 /* Ensure stats strip text remains highly legible in dark mode */
-body.dark-mode .stats-strip {
+body.bright-mode .stats-strip {
   background: var(--primary-dark);
 }
 
@@ -117,8 +116,6 @@ img {
   right: 0;
   z-index: 1000;
   background: var(--nav-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   padding: 0.85rem 0;
   transition: var(--transition);
@@ -263,10 +260,7 @@ img {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(17, 26, 20, 0.3) 0%,
-      rgba(17, 26, 20, 0.1) 50%,
-      rgba(17, 26, 20, 0.6) 100%);
+  background: rgba(17, 26, 20, 0.6);
   z-index: 1;
 }
 
@@ -472,17 +466,18 @@ img {
   animation: kenburns 20s ease-in-out infinite alternate;
 }
 
-/* Glassmorphism */
+/* Glassmorphism Solidified — High Clarity */
 .glass-morphism {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px var(--shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
-body.dark-mode .glass-morphism {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.05);
+body.bright-mode .glass-morphism {
+  background: var(--card-bg);
+  border-color: var(--border);
 }
 
 .hero-packages {
@@ -503,18 +498,12 @@ body.dark-mode .glass-morphism {
 .hero-packages-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(25, 43, 31, 0.4) 0%,
-      rgba(25, 43, 31, 0.6) 50%,
-      var(--bg-body) 100%);
+  background: rgba(25, 43, 31, 0.7);
   z-index: 1;
 }
 
-body.dark-mode .hero-packages-overlay {
-  background: linear-gradient(to bottom,
-      rgba(17, 26, 20, 0.5) 0%,
-      rgba(17, 26, 20, 0.8) 50%,
-      var(--bg-body) 100%);
+body.bright-mode .hero-packages-overlay {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Benefit Cards */
@@ -816,8 +805,16 @@ body.dark-mode .hero-packages-overlay {
   padding: 4rem 0 2rem;
 }
 
-body.dark-mode .footer-retreat {
-  background: #0a1009;
+body.bright-mode .footer-retreat {
+  background: #f8f9fa;
+  border-top: 1px solid var(--border);
+}
+
+body.bright-mode .footer-retreat .footer-heading,
+body.bright-mode .footer-retreat .footer-links a,
+body.bright-mode .footer-retreat .footer-tagline,
+body.bright-mode .footer-retreat .footer-bottom {
+  color: var(--text-secondary);
 }
 
 .footer-brand {
@@ -1473,6 +1470,13 @@ body:not(.home-page) {
       rgba(13, 31, 20, 0.7) 0%,
       rgba(13, 31, 20, 0.4) 50%,
       rgba(13, 31, 20, 0.8) 100%) !important;
+}
+
+body.bright-mode .hero-overlay {
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.5) 100%) !important;
 }
 
 /* Enhanced Retreat Cards */
