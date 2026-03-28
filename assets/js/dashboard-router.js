@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('dashboard-sidebar');
     const mobileToggle = document.getElementById('mobile-sidebar-toggle');
     const sidebarLinks = document.querySelectorAll('.sidebar-link[data-page]');
-    
+
     // Create a hidden template to store initial overview content
     let templateOverview = document.getElementById('template-overview');
     if (!templateOverview) {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="quick-stat h-100 p-4">
                             <div class="quick-stat-icon" style="background:rgba(46,139,87,0.1);">🏃</div>
                             <h4 class="mt-3">Physical Wellbeing</h4>
-                            <p class="small text-muted mb-3">Assessment of fitness, medical conditions, and physical needs.</p>
+                            <p class="dashboard-card-desc">Assessment of fitness, medical conditions, and physical needs.</p>
                             <div class="progress mb-3" style="height:6px; background: rgba(0,0,0,0.05); border-radius: 10px;">
                                 <div class="progress-bar" style="width: 70%; background: var(--primary); border-radius: 10px;"></div>
                             </div>
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="quick-stat h-100 p-4">
                             <div class="quick-stat-icon" style="background:rgba(119,136,153,0.1);">🧠</div>
                             <h4 class="mt-3">Mental Clarity</h4>
-                            <p class="small text-muted mb-3">Insights into your meditation history and current state of mind.</p>
+                            <p class="dashboard-card-desc">Insights into your meditation history and current state of mind.</p>
                             <div class="progress mb-3" style="height:6px; background: rgba(0,0,0,0.05); border-radius: 10px;">
                                 <div class="progress-bar" style="width: 25%; background: var(--accent); border-radius: 10px;"></div>
                             </div>
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="quick-stat h-100 p-4">
                             <div class="quick-stat-icon" style="background:rgba(212,196,183,0.3);">🥗</div>
                             <h4 class="mt-3">Dietary Ethics</h4>
-                            <p class="small text-muted mb-3">Allergies, nutrition preferences, and fasting requirements.</p>
+                            <p class="dashboard-card-desc">Allergies, nutrition preferences, and fasting requirements.</p>
                             <div class="progress mb-3" style="height:6px; background: rgba(0,0,0,0.05); border-radius: 10px;">
                                 <div class="progress-bar" style="width: 0%; background: var(--secondary); border-radius: 10px;"></div>
                             </div>
@@ -106,22 +106,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="timeline-mini">
                         <div class="timeline-mini-item">
                             <div style="font-weight:700; font-size: 0.95rem; color: var(--primary);">Day 1 — The Threshold</div>
-                            <div class="text-muted small mb-1">Jan 15, 2025 · Arrival and Welcome Circle</div>
+                            <div class="dashboard-card-meta mb-1">Jan 15, 2025 · Arrival and Welcome Circle</div>
                             <p class="small">Check-in at the Forest Gate by 10 AM. First meditation session at 3 PM.</p>
                         </div>
                         <div class="timeline-mini-item">
                             <div style="font-weight:700; font-size: 0.95rem;">Day 2-5 — Into the Silence</div>
-                            <div class="text-muted small mb-1">Jan 16-19, 2025 · Noble Silence Begins</div>
+                            <div class="dashboard-card-meta mb-1">Jan 16-19, 2025 · Noble Silence Begins</div>
                             <p class="small">Deepening the practice through guided sittings and nature walks in silence.</p>
                         </div>
                         <div class="timeline-mini-item">
                             <div style="font-weight:700; font-size: 0.95rem;">Day 6 — Returning Voice</div>
-                            <div class="text-muted small mb-1">Jan 20, 2025 · Breaking the Silence</div>
+                            <div class="dashboard-card-meta mb-1">Jan 20, 2025 · Breaking the Silence</div>
                             <p class="small">Integration workshop and voice re-awakening exercises.</p>
                         </div>
                         <div class="timeline-mini-item" style="opacity: 0.6; margin-bottom: 0;">
                             <div style="font-weight:700; font-size: 0.95rem;">Day 7 — New Horizons</div>
-                            <div class="text-muted small mb-1">Jan 21, 2025 · Departure</div>
+                            <div class="dashboard-card-meta mb-1">Jan 21, 2025 · Departure</div>
                             <p class="small">Final blessing ceremony and shuttle departure at 11 AM.</p>
                         </div>
                     </div>
@@ -221,12 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderBookSessions() {
         return `
             <div class="view-fade-in">
-                <div class="greeting-card mb-4" style="background: linear-gradient(135deg, #1e2a22, #111a14);">
+                <div class="greeting-card mb-4" style="background: linear-gradient(135deg, #1e2a22, #111a14); color: #fff;">
                     <div style="position:relative;z-index:1;">
-                        <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:0.5rem;">
+                        <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:0.5rem; color: #fff;">
                             Private <em>Sessions</em> 🧘
                         </h2>
-                        <p style="opacity:0.8;font-size:0.95rem;max-width:500px;">
+                        <p style="opacity:0.8;font-size:0.95rem;max-width:500px; color: rgba(255,255,255,0.9);">
                             Direct guidance from our master practitioners to deepen your practice.
                         </p>
                     </div>
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h6 class="mb-0 fw-bold">🌅 Sunrise Meditation</h6>
                             <span class="badge bg-light text-muted border px-3">6:00 AM</span>
                         </div>
-                        <p class="text-muted small mb-0">A gentle awakening of the senses in our open-air pavilion. No prior experience is required.</p>
+                        <p class="dashboard-card-desc mb-0">A gentle awakening of the senses in our open-air pavilion. No prior experience is required.</p>
                     </div>
 
                     <div class="mb-4 pb-4 border-bottom" style="border-color: var(--border) !important;">
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h6 class="mb-0 fw-bold">🍵 Zen Tea Ceremony</h6>
                             <span class="badge bg-light text-muted border px-3">4:00 PM</span>
                         </div>
-                        <p class="text-muted small mb-0">Experience the ancient art of tea service. A ritual of presence and mindful appreciation.</p>
+                        <p class="dashboard-card-desc mb-0">Experience the ancient art of tea service. A ritual of presence and mindful appreciation.</p>
                     </div>
 
                     <div class="mb-0">
@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h6 class="mb-0 fw-bold">🌕 Moonlight Chant</h6>
                             <span class="badge bg-light text-muted border px-3">8:30 PM</span>
                         </div>
-                        <p class="text-muted small mb-0">Group chanting under the stars to resonate with collective healing frequencies.</p>
+                        <p class="dashboard-card-desc mb-0">Group chanting under the stars to resonate with collective healing frequencies.</p>
                     </div>
                 </div>
             </div>
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('hashchange', () => {
         const page = window.location.hash.substring(1);
         loadDashboardPage(page);
-        
+
         // Close sidebar on mobile after selection
         if (window.innerWidth < 992) {
             sidebar.classList.remove('active');

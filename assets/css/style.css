@@ -89,6 +89,7 @@ h6 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   color: var(--text-primary);
   line-height: 1.25;
+  font-weight: 700;
 }
 
 a {
@@ -260,7 +261,7 @@ img {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(17, 26, 20, 0.6);
+  background: rgba(13, 31, 20, 0.8);
   z-index: 1;
 }
 
@@ -331,6 +332,7 @@ img {
   line-height: 1.15;
   margin-bottom: 1.5rem;
   animation: fadeInUp 0.8s 0.15s ease both;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .hero-title em {
@@ -341,11 +343,12 @@ img {
 
 .hero-subtitle {
   font-size: 1.1rem;
-  color: rgba(251, 251, 249, 0.75);
+  color: rgba(251, 251, 249, 0.85);
   max-width: 560px;
   margin: 0 auto 2.5rem;
   font-weight: 300;
   animation: fadeInUp 0.8s 0.3s ease both;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-cta-group {
@@ -369,6 +372,7 @@ img {
   box-shadow: 0 4px 20px rgba(46, 139, 87, 0.4);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -391,6 +395,7 @@ img {
   transition: var(--transition);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -420,7 +425,7 @@ img {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  color: rgba(251, 251, 249, 0.5);
+  color: rgba(251, 251, 249, 0.85);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -434,7 +439,7 @@ img {
 .scroll-line {
   width: 1px;
   height: 40px;
-  background: linear-gradient(to bottom, rgba(251, 251, 249, 0.5), transparent);
+  background: linear-gradient(to bottom, rgba(251, 251, 249, 0.85), transparent);
   animation: scrollPulse 2s ease infinite;
 }
 
@@ -498,12 +503,18 @@ body.bright-mode .glass-morphism {
 .hero-packages-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(25, 43, 31, 0.7);
+  background: linear-gradient(to bottom, 
+      rgba(13, 31, 20, 0.8) 0%, 
+      rgba(13, 31, 20, 0.5) 50%, 
+      rgba(13, 31, 20, 0.85) 100%);
   z-index: 1;
 }
 
 body.bright-mode .hero-packages-overlay {
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(to bottom, 
+      rgba(13, 31, 20, 0.75) 0%, 
+      rgba(13, 31, 20, 0.45) 50%, 
+      rgba(13, 31, 20, 0.8) 100%) !important;
 }
 
 /* Benefit Cards */
@@ -528,6 +539,18 @@ body.bright-mode .hero-packages-overlay {
   display: block;
 }
 
+.benefit-card h4 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.benefit-card p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
 /* Steps */
 .step-number {
   width: 40px;
@@ -540,6 +563,12 @@ body.bright-mode .hero-packages-overlay {
   justify-content: center;
   font-weight: 700;
   margin-bottom: 1rem;
+}
+
+.step-description {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 /* New card meta */
@@ -633,7 +662,7 @@ body.bright-mode .hero-packages-overlay {
 
 .section-title {
   font-size: clamp(1.9rem, 3.5vw, 2.9rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 1rem;
 }
@@ -663,6 +692,8 @@ body.bright-mode .hero-packages-overlay {
   border: 1px solid var(--card-border);
   box-shadow: 0 2px 20px var(--shadow);
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .retreat-card:hover {
@@ -684,6 +715,22 @@ body.bright-mode .hero-packages-overlay {
 
 .retreat-card-body {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.retreat-card-body p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  min-height: 4.5rem; /* Ensures enough space for 3 lines of text */
+}
+
+.retreat-card-body > .d-flex:last-child {
+  margin-top: auto;
+  padding-top: 1rem;
 }
 
 .tag {
@@ -709,6 +756,9 @@ body.bright-mode .hero-packages-overlay {
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
+  min-height: 3.2rem; /* Approximately 2 lines of heading */
+  display: flex;
+  align-items: center;
 }
 
 .retreat-card-meta {
@@ -813,8 +863,19 @@ body.bright-mode .footer-retreat {
 body.bright-mode .footer-retreat .footer-heading,
 body.bright-mode .footer-retreat .footer-links a,
 body.bright-mode .footer-retreat .footer-tagline,
+body.bright-mode .footer-retreat .footer-description,
 body.bright-mode .footer-retreat .footer-bottom {
-  color: var(--text-secondary);
+  color: var(--text-secondary) !important;
+}
+
+body.bright-mode .footer-newsletter-input {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
+}
+
+body.bright-mode .footer-newsletter-input::placeholder {
+  color: var(--text-muted);
 }
 
 .footer-brand {
@@ -835,9 +896,21 @@ body.bright-mode .footer-retreat .footer-bottom {
 
 .footer-tagline {
   font-size: 0.88rem;
-  color: rgba(251, 251, 249, 0.5);
+  color: var(--text-secondary); /* Dynamic color instead of fixed white opacity */
   font-style: italic;
   margin-bottom: 1.5rem;
+}
+
+.footer-description {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.footer-newsletter-subtext {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
 }
 
 .footer-heading {
@@ -1467,16 +1540,16 @@ body:not(.home-page) {
 
 .hero-overlay {
   background: linear-gradient(to bottom,
-      rgba(13, 31, 20, 0.7) 0%,
-      rgba(13, 31, 20, 0.4) 50%,
-      rgba(13, 31, 20, 0.8) 100%) !important;
+      rgba(13, 31, 20, 0.85) 0%,
+      rgba(13, 31, 20, 0.65) 50%,
+      rgba(13, 31, 20, 0.9) 100%) !important;
 }
 
 body.bright-mode .hero-overlay {
   background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.5) 100%) !important;
+      rgba(13, 31, 20, 0.75) 0%,
+      rgba(13, 31, 20, 0.5) 50%,
+      rgba(13, 31, 20, 0.8) 100%) !important;
 }
 
 /* Enhanced Retreat Cards */
@@ -1688,6 +1761,20 @@ body.bright-mode .hero-overlay {
   font-style: italic;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.testimonial-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+}
+
+body.dark-mode .testimonial-meta,
+:root:not(.bright-mode) .testimonial-meta {
+  color: var(--text-secondary);
+  opacity: 1;
 }
 
 /* Texture & Glows */
