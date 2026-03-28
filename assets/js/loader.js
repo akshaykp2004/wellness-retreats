@@ -47,29 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
      * Corrects links in the injected components based on directory depth
      */
     function correctPaths(element, isSubPage) {
+        // Correct links
         const links = element.querySelectorAll('a');
         links.forEach(link => {
             let href = link.getAttribute('href');
-            
-            // Skip external links and anchors
-            if (!href || href.startsWith('http') || href.startsWith('#') || href === 'javascript:void(0)') {
-                return;
-            }
+            if (!href || href.startsWith('http') || href.startsWith('#') || href === 'javascript:void(0)') return;
 
             if (isSubPage) {
-                // If we're in /pages/:
-                // 1. index.html -> ../index.html
-                if (href === 'index.html') {
-                    link.setAttribute('href', '../index.html');
-                }
-                // 2. pages/filename.html -> filename.html (strip 'pages/')
-                else if (href.startsWith('pages/')) {
-                    link.setAttribute('href', href.replace('pages/', ''));
-                }
-            } else {
-                // If we're in root:
-                // Links are already correct (index.html and pages/...)
-                // Just keep as is
+                if (href === 'index.html') link.setAttribute('href', '../index.html');
+                else if (href.startsWith('pages/')) link.setAttribute('href', href.replace('pages/', ''));
+                else if (href.startsWith('assets/')) link.setAttribute('href', '../' + href);
+            }
+        });
+
+        // Correct images
+        const images = element.querySelectorAll('img');
+        images.forEach(img => {
+            let src = img.getAttribute('src');
+            if (!src || src.startsWith('http') || src.startsWith('data:')) return;
+
+            if (isSubPage && src.startsWith('assets/')) {
+                img.setAttribute('src', '../' + src);
             }
         });
     }

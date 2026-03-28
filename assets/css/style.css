@@ -5,9 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #2E8B57;
-  --primary-light: #3aac6d;
-  --primary-dark: #1e6640;
+  --primary: #7097BB;
+  --primary-light: #A1C4E1;
+  --primary-dark: #4A6D8E;
   --secondary: #D4C4B7;
   --accent: #778899;
   --dark: #1C2520;
@@ -30,9 +30,9 @@
 
 /* DARK MODE */
 body.dark-mode {
-  --primary: #3aac6d;
-  --primary-light: #4fc882;
-  --primary-dark: #2E8B57;
+  --primary: #A1C4E1;
+  --primary-light: #C5D9EB;
+  --primary-dark: #7097BB;
   --secondary: #E5D9D0;
   /* Kept light for accents on dark backgrounds */
   --accent: #a5b4c2;
@@ -134,15 +134,15 @@ img {
   gap: 0.5rem;
 }
 
-.navbar-brand-retreat .brand-icon {
-  width: 34px;
-  height: 34px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
+.navbar-brand-retreat .brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  transition: var(--transition);
+}
+
+.navbar-brand-retreat:hover .brand-logo {
+  transform: scale(1.05);
 }
 
 .nav-link-retreat {
@@ -821,10 +821,19 @@ body.dark-mode .footer-retreat {
 }
 
 .footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
   color: var(--primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
+.footer-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 
 .footer-tagline {
