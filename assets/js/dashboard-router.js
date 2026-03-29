@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             <span class="fs-3 me-3">💆‍♀️</span>
                                             <div>
                                                 <div class="fw-bold">Deep Tissue Massage</div>
-                                                <div class="small text-muted">60-minute therapeutic session</div>
+                                                <div class="small opacity-75">60-minute therapeutic session</div>
                                             </div>
                                         </div>
                                     </td>
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             <span class="fs-3 me-3">🥣</span>
                                             <div>
                                                 <div class="fw-bold">Sound Healing Bowl</div>
-                                                <div class="small text-muted">Private vibrational therapy</div>
+                                                <div class="small opacity-75">Private vibrational therapy</div>
                                             </div>
                                         </div>
                                     </td>
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             <span class="fs-3 me-3">🚶‍♂️</span>
                                             <div>
                                                 <div class="fw-bold">Guided Forest Bathing</div>
-                                                <div class="small text-muted">3-hour meditative nature walk</div>
+                                                <div class="small opacity-75">3-hour meditative nature walk</div>
                                             </div>
                                         </div>
                                     </td>
@@ -240,10 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="badge bg-soft-success text-success rounded-pill px-3 py-1" style="background: rgba(46,139,87,0.1); font-size: 0.7rem;">TOP RATED</span>
                             </div>
                             <h4 style="font-family:'Cormorant Garamond',serif;">One-on-One Yoga</h4>
-                            <p class="text-muted small">Personalized alignment and flow tailored to your energetic frequency.</p>
+                            <p class="dashboard-card-desc mb-2" style="font-size: 0.88rem; min-height: auto;">Personalized alignment and flow tailored to your energetic frequency.</p>
                             <hr class="my-3 opacity-10">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="fw-bold text-primary">$95 <span class="text-muted small font-weight-normal">/ 75min</span></div>
+                                <div class="fw-bold text-primary">$95 <span class="small font-weight-normal opacity-75">/ 75min</span></div>
                                 <button class="btn btn-primary-retreat rounded-pill px-4 btn-sm">Reserve</button>
                             </div>
                         </div>
@@ -254,10 +254,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="fs-1">🌬️</span>
                             </div>
                             <h4 style="font-family:'Cormorant Garamond',serif;">Advanced Breathwork</h4>
-                            <p class="text-muted small">Deep pranayama techniques to oxygenate your cells and clear mental fog.</p>
+                            <p class="dashboard-card-desc mb-2" style="font-size: 0.88rem; min-height: auto;">Deep pranayama techniques to oxygenate your cells and clear mental fog.</p>
                             <hr class="my-3 opacity-10">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="fw-bold text-primary">$75 <span class="text-muted small font-weight-normal">/ 45min</span></div>
+                                <div class="fw-bold text-primary">$75 <span class="small font-weight-normal opacity-75">/ 45min</span></div>
                                 <button class="btn btn-primary-retreat rounded-pill px-4 btn-sm">Reserve</button>
                             </div>
                         </div>
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="mb-4 pb-4 border-bottom" style="border-color: var(--border) !important;">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h6 class="mb-0 fw-bold">🌅 Sunrise Meditation</h6>
-                            <span class="badge bg-light text-muted border px-3">6:00 AM</span>
+                            <span class="badge border px-3 py-1" style="background: rgba(112, 151, 187, 0.15); color: var(--primary) !important; font-size: 0.75rem; border-color: rgba(112, 151, 187, 0.3) !important;">6:00 AM</span>
                         </div>
                         <p class="dashboard-card-desc mb-0">A gentle awakening of the senses in our open-air pavilion. No prior experience is required.</p>
                     </div>
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="mb-4 pb-4 border-bottom" style="border-color: var(--border) !important;">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h6 class="mb-0 fw-bold">🍵 Zen Tea Ceremony</h6>
-                            <span class="badge bg-light text-muted border px-3">4:00 PM</span>
+                            <span class="badge border px-3 py-1" style="background: rgba(112, 151, 187, 0.15); color: var(--primary) !important; font-size: 0.75rem; border-color: rgba(112, 151, 187, 0.3) !important;">4:00 PM</span>
                         </div>
                         <p class="dashboard-card-desc mb-0">Experience the ancient art of tea service. A ritual of presence and mindful appreciation.</p>
                     </div>
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="mb-0">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h6 class="mb-0 fw-bold">🌕 Moonlight Chant</h6>
-                            <span class="badge bg-light text-muted border px-3">8:30 PM</span>
+                            <span class="badge border px-3 py-1" style="background: rgba(112, 151, 187, 0.15); color: var(--primary) !important; font-size: 0.75rem; border-color: rgba(112, 151, 187, 0.3) !important;">8:30 PM</span>
                         </div>
                         <p class="dashboard-card-desc mb-0">Group chanting under the stars to resonate with collective healing frequencies.</p>
                     </div>
