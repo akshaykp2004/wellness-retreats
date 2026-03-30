@@ -108,6 +108,15 @@
       transition: opacity 0.3s ease;
     }
 
+    @media (min-width: 992px) and (max-width: 1200px) {
+      .dashboard-layout {
+        grid-template-columns: 240px 1fr;
+      }
+      .dashboard-main {
+        padding: 1.5rem;
+      }
+    }
+
     @media (max-width: 768px) {
       .dashboard-main {
         padding: 1.5rem 1rem;

@@ -2065,3 +2065,49 @@ body.dark-mode .testimonial-meta,
 .animate-delay-3 {
   transition-delay: 0.3s;
 }
+
+/* ===========================
+   FIX FOR 1024PX ALIGNMENT & HORIZONTAL SCROLL
+   =========================== */
+@media (max-width: 1024px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    position: relative;
+  }
+  
+  .container {
+    max-width: 100% !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+  
+  /* Ensure navbar doesn't cause overflow */
+  .navbar-retreat .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100% !important;
+  }
+  
+  /* Force hide desktop nav items if they try to show at 1024px */
+  .d-xl-flex {
+    display: none !important;
+  }
+  
+  /* Ensure hamburger menu is visible and centered vertically */
+  .icon-btn.d-xl-none {
+    display: flex !important;
+  }
+}
+
+/* Smooth transition for screens just above 1024px */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .nav-link-retreat {
+    padding: 0.4rem 0.5rem !important;
+    font-size: 0.85rem !important;
+  }
+  .navbar-brand-retreat {
+    font-size: 1.3rem !important;
+  }
+}
