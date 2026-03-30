@@ -1078,6 +1078,189 @@ body.bright-mode .footer-newsletter-input::placeholder {
   transition-delay: 0.3s;
 }
 
+/* ===========================
+   MOBILE RESPONSIVENESS REFINEMENTS
+   (Targeting 576px and specifically 425px)
+   =========================== */
+@media (max-width: 576px) {
+  :root {
+    --section-spacing: 3.5rem;
+  }
+
+  .section-pad {
+    padding: var(--section-spacing) 0;
+  }
+
+  .section-pad-sm {
+    padding: 2.5rem 0;
+  }
+
+  /* Typography Clamping */
+  h1 { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+  h2 { font-size: clamp(1.75rem, 7vw, 2.2rem) !important; }
+  h3 { font-size: 1.4rem !important; }
+
+  .hero-title {
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Navbar Adjustments */
+  .navbar-retreat {
+    padding: 0.6rem 0;
+  }
+
+  .navbar-brand-retreat {
+    font-size: 1.25rem;
+  }
+
+  .navbar-brand-retreat .brand-logo {
+    height: 32px;
+  }
+
+  /* Stats Strip: 2x2 Grid */
+  .stats-strip {
+    padding: 2rem 0;
+  }
+
+  .stats-strip .stat-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.25rem 0.5rem;
+  }
+
+  .stats-strip .row > div:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .stats-strip .row > div:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    min-height: auto;
+  }
+
+  /* Retreat Cards */
+  .retreat-card-body {
+    padding: 1.25rem;
+  }
+
+  .retreat-card-title {
+    font-size: 1.15rem;
+    min-height: auto;
+    margin-bottom: 0.75rem;
+  }
+
+  .retreat-card-body p {
+    font-size: 0.85rem;
+    min-height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .price-badge {
+    font-size: 1.4rem;
+  }
+
+  /* Footer */
+  .footer-retreat {
+    text-align: center;
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-brand {
+    justify-content: center;
+  }
+
+  .footer-links {
+    margin-bottom: 2rem;
+  }
+
+  .footer-newsletter-input {
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .footer-newsletter-btn {
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  .footer-bottom {
+    margin-top: 2rem;
+  }
+
+  /* Timeline Transformation */
+  .timeline-item {
+    padding-left: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .day-tag {
+    font-size: 0.65rem;
+  }
+
+  /* Dashboard Adjustments */
+  .dashboard-main {
+    padding: 1.25rem 0.75rem !important;
+  }
+
+  .greeting-card {
+    padding: 1.75rem 1.25rem !important;
+  }
+}
+
+@media (max-width: 425px) {
+  /* Extra tight adjustments for Bootstrap XS / 425px */
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn-primary-retreat,
+  .hero-cta-group .btn-outline-retreat {
+    width: 100%;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+  }
+
+  /* Filter Buttons Flow */
+  .filter-btn {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.75rem;
+  }
+
+  /* Testimonials */
+  .testimonial-card-premium {
+    padding: 1.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 1.1rem;
+  }
+}
+
 .animate-delay-4 {
   transition-delay: 0.4s;
 }

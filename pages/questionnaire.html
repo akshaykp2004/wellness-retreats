@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,34 +10,51 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    body { padding-top: 70px; }
+    body {
+      padding-top: 70px;
+    }
 
     .radio-option {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.75rem;
       padding: 0.75rem 1rem;
       border: 1.5px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
       font-size: 0.9rem;
       color: var(--text-secondary);
+      background: var(--card-bg);
     }
 
-    .radio-option:hover { border-color: var(--primary); background: rgba(46,139,87,0.04); }
+    .radio-option:hover {
+      border-color: var(--primary);
+      background: rgba(46, 139, 87, 0.04);
+    }
 
     .radio-option input[type="radio"],
     .radio-option input[type="checkbox"] {
       accent-color: var(--primary);
-      width: 16px; height: 16px;
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
+      margin-top: 2px;
     }
 
-    .radio-option input:checked + span { color: var(--text-primary); font-weight: 600; }
+    .radio-option span {
+      line-height: 1.4;
+      padding-top: 2px;
+    }
+
+    .radio-option input:checked+span {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
     .radio-option:has(input:checked) {
       border-color: var(--primary);
-      background: rgba(46,139,87,0.06);
+      background: rgba(46, 139, 87, 0.06);
     }
 
     .scale-option {
@@ -48,10 +66,13 @@
     }
 
     .scale-circle {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 700;
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -59,13 +80,15 @@
     }
 
     .scale-option:hover .scale-circle,
-    .scale-option input:checked ~ .scale-circle {
+    .scale-option input:checked~.scale-circle {
       border-color: var(--primary);
       background: var(--primary);
       color: #fff;
     }
 
-    .scale-option input { display: none; }
+    .scale-option input {
+      display: none;
+    }
 
     .section-divider {
       border: none;
@@ -79,7 +102,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px; height: 28px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: var(--primary);
       color: #fff;
@@ -108,278 +132,396 @@
 
     .range-input::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 20px; height: 20px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: var(--primary);
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(46,139,87,0.3);
+      box-shadow: 0 2px 8px rgba(46, 139, 87, 0.3);
+    }
+
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 576px) {
+      body {
+        padding-top: 60px;
+      }
+
+      .container {
+        padding-top: 1rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+
+      .d-flex.gap-2.justify-content-between.mt-2 {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.75rem 0.5rem !important;
+        justify-items: center;
+      }
+
+      .scale-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+      }
+
+      .radio-option {
+        padding: 0.6rem 0.75rem;
+        gap: 0.5rem;
+      }
+
+      .radio-option span {
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: 1.7rem !important;
+      }
+      
+      .progress-header {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 425px) {
+      .container {
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+      }
+      
+      .d-flex.align-items-center.gap-2.mb-2 label {
+        font-size: 0.8rem !important;
+      }
+      
+      .question-number {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+      }
     }
   </style>
 </head>
+
 <body class="questionnaire-page">
 
-<div id="header-placeholder"></div>
+  <div id="header-placeholder"></div>
 
-<div class="container" style="max-width:760px;padding-top:2rem;padding-bottom:4rem;">
-  <!-- Sticky Progress -->
-  <div class="progress-header">
-    <div class="d-flex align-items-center justify-content-between mb-2">
-      <div>
-        <span style="font-size:0.8rem;font-weight:700;color:var(--text-secondary);">Pre-Retreat Wellness Form</span>
-        <span style="font-size:0.72rem;color:var(--text-muted);margin-left:0.5rem;">· Sarah M. · Vipassana Jan 15</span>
+  <div class="container" style="max-width:760px;padding-top:2rem;padding-bottom:4rem;">
+    <!-- Sticky Progress -->
+    <div class="progress-header">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <div>
+          <span style="font-size:0.8rem;font-weight:700;color:var(--text-secondary);">Pre-Retreat Wellness Form</span>
+          <span style="font-size:0.72rem;color:var(--text-muted);margin-left:0.5rem;">· Sarah M. · Vipassana Jan
+            15</span>
+        </div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--primary);font-weight:600;"
+          id="progress-label">0%</div>
       </div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--primary);font-weight:600;" id="progress-label">0%</div>
-    </div>
-    <div class="progress-retreat">
-      <div class="progress-fill" id="progress-fill" style="width:0%;"></div>
-    </div>
-    <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">Complete before January 8, 2025</div>
-  </div>
-
-  <!-- Intro -->
-  <div style="margin-bottom:2.5rem;">
-    <div class="section-label">📋 Wellness Assessment</div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:1rem;">
-      Help Us Care for <em style="color:var(--primary);">You</em>
-    </h1>
-    <p style="color:var(--text-secondary);line-height:1.8;">
-      This questionnaire helps our guides and healers understand your unique needs, so we can tailor your retreat experience. Your answers are completely private and shared only with your assigned guide.
-    </p>
-  </div>
-
-  <form id="wellness-form">
-
-    <!-- SECTION 1: Physical Health -->
-    <div style="background:var(--card-bg);border-radius:20px;padding:2rem;border:1px solid var(--card-border);margin-bottom:1.5rem;">
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:1.5rem;color:var(--primary);">
-        🌱 Section 1 — Physical Wellbeing
-      </h3>
-
-      <!-- Q1 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">1</span>
-          <label class="form-label-retreat mb-0">How would you describe your overall fitness level?</label>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <label class="radio-option"><input type="radio" name="fitness"><span>🌱 Beginner — I rarely exercise</span></label>
-          <label class="radio-option"><input type="radio" name="fitness"><span>🌿 Moderate — Light activity 2-3x per week</span></label>
-          <label class="radio-option"><input type="radio" name="fitness"><span>🌳 Active — Regular movement most days</span></label>
-          <label class="radio-option"><input type="radio" name="fitness"><span>⚡ Athlete — Intense training regularly</span></label>
-        </div>
+      <div class="progress-retreat">
+        <div class="progress-fill" id="progress-fill" style="width:0%;"></div>
       </div>
-
-      <!-- Q2 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">2</span>
-          <label class="form-label-retreat mb-0">Do you have any physical conditions or injuries we should be aware of?</label>
-        </div>
-        <textarea class="form-control-retreat" rows="3" name="injuries" placeholder="e.g. lower back pain, knee injury, high blood pressure, recent surgery..."></textarea>
-      </div>
-
-      <!-- Q3 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">3</span>
-          <label class="form-label-retreat mb-0">Please list any food allergies or dietary requirements:</label>
-        </div>
-        <div class="d-flex flex-wrap gap-2 mb-2">
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="checkbox" name="diet"><span>Vegan</span>
-          </label>
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="checkbox" name="diet"><span>Vegetarian</span>
-          </label>
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="checkbox" name="diet"><span>Gluten-Free</span>
-          </label>
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="checkbox" name="diet"><span>Nut Allergy</span>
-          </label>
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="checkbox" name="diet"><span>Dairy-Free</span>
-          </label>
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="checkbox" name="diet"><span>No Restrictions</span>
-          </label>
-        </div>
-        <input type="text" class="form-control-retreat" name="other-diet" placeholder="Other allergies or requirements...">
-      </div>
-
-      <!-- Q4 -->
-      <div class="mb-2">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">4</span>
-          <label class="form-label-retreat mb-0">Are you currently taking any medications?</label>
-        </div>
-        <div class="d-flex gap-3 mb-2">
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="radio" name="medications"><span>No medications</span>
-          </label>
-          <label class="radio-option" style="padding:0.4rem 0.8rem;">
-            <input type="radio" name="medications"><span>Yes (please specify)</span>
-          </label>
-        </div>
-        <input type="text" class="form-control-retreat" name="meds-detail" placeholder="Optional: type of medication (no brand names needed)">
-      </div>
+      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">Complete before January 8, 2025</div>
     </div>
 
-    <!-- SECTION 2: Mental & Emotional -->
-    <div style="background:var(--card-bg);border-radius:20px;padding:2rem;border:1px solid var(--card-border);margin-bottom:1.5rem;">
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:1.5rem;color:var(--primary);">
-        🧘 Section 2 — Mental & Emotional Health
-      </h3>
-
-      <!-- Q5 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">5</span>
-          <label class="form-label-retreat mb-0">On a scale of 1-10, how would you rate your current stress level?</label>
-        </div>
-        <div class="d-flex gap-2 justify-content-between mt-2">
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">1</div><span style="font-size:0.68rem;color:var(--text-muted);">Calm</span></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">2</div></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">3</div></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">4</div></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">5</div><span style="font-size:0.68rem;color:var(--text-muted);">Moderate</span></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">6</div></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">7</div></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">8</div></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">9</div></label>
-          <label class="scale-option"><input type="radio" name="stress"><div class="scale-circle">10</div><span style="font-size:0.68rem;color:var(--text-muted);">Max</span></label>
-        </div>
-      </div>
-
-      <!-- Q6 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">6</span>
-          <label class="form-label-retreat mb-0">Have you experienced any of the following recently? (select all that apply)</label>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <label class="radio-option"><input type="checkbox" name="symptoms"><span>Anxiety or panic attacks</span></label>
-          <label class="radio-option"><input type="checkbox" name="symptoms"><span>Depression or low mood</span></label>
-          <label class="radio-option"><input type="checkbox" name="symptoms"><span>Burnout or exhaustion</span></label>
-          <label class="radio-option"><input type="checkbox" name="symptoms"><span>Sleep disturbances</span></label>
-          <label class="radio-option"><input type="checkbox" name="symptoms"><span>Grief or major life change</span></label>
-          <label class="radio-option"><input type="checkbox" name="symptoms"><span>None of the above</span></label>
-        </div>
-      </div>
-
-      <!-- Q7 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">7</span>
-          <label class="form-label-retreat mb-0">What is your primary intention for this retreat?</label>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <label class="radio-option"><input type="radio" name="intention"><span>🧠 Mental clarity and stress relief</span></label>
-          <label class="radio-option"><input type="radio" name="intention"><span>💪 Physical restoration and healing</span></label>
-          <label class="radio-option"><input type="radio" name="intention"><span>🌱 Spiritual growth and connection</span></label>
-          <label class="radio-option"><input type="radio" name="intention"><span>📵 Digital detox and presence</span></label>
-          <label class="radio-option"><input type="radio" name="intention"><span>🔍 Self-discovery and introspection</span></label>
-          <label class="radio-option"><input type="radio" name="intention"><span>💞 All of the above</span></label>
-        </div>
-      </div>
-
-      <!-- Q8 -->
-      <div class="mb-2">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">8</span>
-          <label class="form-label-retreat mb-0">In your own words, what do you hope to leave behind?</label>
-        </div>
-        <textarea class="form-control-retreat" name="leave-behind" rows="3" placeholder="This is a sacred space to be honest. What are you ready to release?"></textarea>
-      </div>
-    </div>
-
-    <!-- SECTION 3: Retreat Preferences -->
-    <div style="background:var(--card-bg);border-radius:20px;padding:2rem;border:1px solid var(--card-border);margin-bottom:1.5rem;">
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:1.5rem;color:var(--primary);">
-        🌿 Section 3 — Retreat Preferences
-      </h3>
-
-      <!-- Q9 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">9</span>
-          <label class="form-label-retreat mb-0">Do you have previous meditation experience?</label>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <label class="radio-option"><input type="radio" name="meditation-exp"><span>Complete beginner — never meditated</span></label>
-          <label class="radio-option"><input type="radio" name="meditation-exp"><span>Occasional — tried a few times</span></label>
-          <label class="radio-option"><input type="radio" name="meditation-exp"><span>Regular — weekly practice</span></label>
-          <label class="radio-option"><input type="radio" name="meditation-exp"><span>Advanced — daily practice for years</span></label>
-        </div>
-      </div>
-
-      <!-- Q10 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">10</span>
-          <label class="form-label-retreat mb-0">Your preferred daily wake-up time?</label>
-        </div>
-        <select class="form-control-retreat" name="wakeup">
-          <option>5:00 AM — I embrace early mornings</option>
-          <option>6:00 AM — Moderate early riser</option>
-          <option>7:00 AM — Natural waker</option>
-          <option>I'll adjust to whatever the retreat needs</option>
-        </select>
-      </div>
-
-      <!-- Q11 -->
-      <div class="mb-4">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">11</span>
-          <label class="form-label-retreat mb-0">How are you with total silence (no talking)?</label>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <label class="radio-option"><input type="radio" name="silence"><span>😬 Nervous but ready to try</span></label>
-          <label class="radio-option"><input type="radio" name="silence"><span>😌 Comfortable — I need quiet time</span></label>
-          <label class="radio-option"><input type="radio" name="silence"><span>🧘 Experienced — I've done silent retreats before</span></label>
-        </div>
-      </div>
-
-      <!-- Q12 -->
-      <div class="mb-2">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="question-number">12</span>
-          <label class="form-label-retreat mb-0">Is there anything else you'd like your guide to know about you?</label>
-        </div>
-        <textarea class="form-control-retreat" name="anything-else" rows="4" placeholder="Share anything that will help us create the most healing experience for you. There are no wrong answers here."></textarea>
-      </div>
-    </div>
-
-    <!-- Submit -->
-    <div style="text-align:center;">
-      <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.25rem;">
-        🔒 Your responses are private and will only be shared with your assigned guide.
+    <!-- Intro -->
+    <div style="margin-bottom:2.5rem;">
+      <div class="section-label">📋 Wellness Assessment</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:1rem;">
+        Help Us Care for <em style="color:var(--primary);">You</em>
+      </h1>
+      <p style="color:var(--text-secondary);line-height:1.8;">
+        This questionnaire helps our guides and healers understand your unique needs, so we can tailor your retreat
+        experience. Your answers are completely private and shared only with your assigned guide.
       </p>
-      <button type="submit" class="btn-primary-retreat" style="padding:1rem 3rem;font-size:1rem;" onclick="submitForm(event)">
-        Submit Wellness Form 🌿
-      </button>
-      <div style="margin-top:0.75rem;">
-        <a href="dashboard.html" style="font-size:0.82rem;color:var(--text-muted);">Save and finish later →</a>
-      </div>
     </div>
 
-  </form>
-</div>
+    <form id="wellness-form">
 
-<div id="footer-placeholder"></div>
+      <!-- SECTION 1: Physical Health -->
+      <div
+        style="background:var(--card-bg);border-radius:20px;padding:2rem;border:1px solid var(--card-border);margin-bottom:1.5rem;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:1.5rem;color:var(--primary);">
+          🌱 Section 1 — Physical Wellbeing
+        </h3>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Logic scripts -->
-<script src="../assets/js/app.js"></script>
-<script src="../assets/js/loader.js"></script>
-<script>
-  function submitForm(e) {
-    e.preventDefault();
-    const btn = e.target;
-    btn.innerHTML = '⏳ Submitting...';
-    btn.disabled = true;
-    setTimeout(() => {
-      document.querySelector('form').innerHTML = `
+        <!-- Q1 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">1</span>
+            <label class="form-label-retreat mb-0">How would you describe your overall fitness level?</label>
+          </div>
+          <div class="d-flex flex-column gap-2">
+            <label class="radio-option"><input type="radio" name="fitness"><span>🌱 Beginner — I rarely
+                exercise</span></label>
+            <label class="radio-option"><input type="radio" name="fitness"><span>🌿 Moderate — Light activity 2-3x per
+                week</span></label>
+            <label class="radio-option"><input type="radio" name="fitness"><span>🌳 Active — Regular movement most
+                days</span></label>
+            <label class="radio-option"><input type="radio" name="fitness"><span>⚡ Athlete — Intense training
+                regularly</span></label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">2</span>
+            <label class="form-label-retreat mb-0">Do you have any physical conditions or injuries we should be aware
+              of?</label>
+          </div>
+          <textarea class="form-control-retreat" rows="3" name="injuries"
+            placeholder="e.g. lower back pain, knee injury, high blood pressure, recent surgery..."></textarea>
+        </div>
+
+        <!-- Q3 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">3</span>
+            <label class="form-label-retreat mb-0">Please list any food allergies or dietary requirements:</label>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="checkbox" name="diet"><span>Vegan</span>
+            </label>
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="checkbox" name="diet"><span>Vegetarian</span>
+            </label>
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="checkbox" name="diet"><span>Gluten-Free</span>
+            </label>
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="checkbox" name="diet"><span>Nut Allergy</span>
+            </label>
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="checkbox" name="diet"><span>Dairy-Free</span>
+            </label>
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="checkbox" name="diet"><span>No Restrictions</span>
+            </label>
+          </div>
+          <input type="text" class="form-control-retreat" name="other-diet"
+            placeholder="Other allergies or requirements...">
+        </div>
+
+        <!-- Q4 -->
+        <div class="mb-2">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">4</span>
+            <label class="form-label-retreat mb-0">Are you currently taking any medications?</label>
+          </div>
+          <div class="d-flex gap-3 mb-2">
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="radio" name="medications"><span>No medications</span>
+            </label>
+            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+              <input type="radio" name="medications"><span>Yes (please specify)</span>
+            </label>
+          </div>
+          <input type="text" class="form-control-retreat" name="meds-detail"
+            placeholder="Optional: type of medication (no brand names needed)">
+        </div>
+      </div>
+
+      <!-- SECTION 2: Mental & Emotional -->
+      <div
+        style="background:var(--card-bg);border-radius:20px;padding:2rem;border:1px solid var(--card-border);margin-bottom:1.5rem;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:1.5rem;color:var(--primary);">
+          🧘 Section 2 — Mental & Emotional Health
+        </h3>
+
+        <!-- Q5 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">5</span>
+            <label class="form-label-retreat mb-0">On a scale of 1-10, how would you rate your current stress
+              level?</label>
+          </div>
+          <div class="d-flex gap-2 justify-content-between mt-2">
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">1</div><span style="font-size:0.68rem;color:var(--text-muted);">Calm</span>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">2</div>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">3</div>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">4</div>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">5</div><span style="font-size:0.68rem;color:var(--text-muted);">Moderate</span>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">6</div>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">7</div>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">8</div>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">9</div>
+            </label>
+            <label class="scale-option"><input type="radio" name="stress">
+              <div class="scale-circle">10</div><span style="font-size:0.68rem;color:var(--text-muted);">Max</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">6</span>
+            <label class="form-label-retreat mb-0">Have you experienced any of the following recently? (select all that
+              apply)</label>
+          </div>
+          <div class="d-flex flex-column gap-2">
+            <label class="radio-option"><input type="checkbox" name="symptoms"><span>Anxiety or panic
+                attacks</span></label>
+            <label class="radio-option"><input type="checkbox" name="symptoms"><span>Depression or low
+                mood</span></label>
+            <label class="radio-option"><input type="checkbox" name="symptoms"><span>Burnout or
+                exhaustion</span></label>
+            <label class="radio-option"><input type="checkbox" name="symptoms"><span>Sleep disturbances</span></label>
+            <label class="radio-option"><input type="checkbox" name="symptoms"><span>Grief or major life
+                change</span></label>
+            <label class="radio-option"><input type="checkbox" name="symptoms"><span>None of the above</span></label>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">7</span>
+            <label class="form-label-retreat mb-0">What is your primary intention for this retreat?</label>
+          </div>
+          <div class="d-flex flex-column gap-2">
+            <label class="radio-option"><input type="radio" name="intention"><span>🧠 Mental clarity and stress
+                relief</span></label>
+            <label class="radio-option"><input type="radio" name="intention"><span>💪 Physical restoration and
+                healing</span></label>
+            <label class="radio-option"><input type="radio" name="intention"><span>🌱 Spiritual growth and
+                connection</span></label>
+            <label class="radio-option"><input type="radio" name="intention"><span>📵 Digital detox and
+                presence</span></label>
+            <label class="radio-option"><input type="radio" name="intention"><span>🔍 Self-discovery and
+                introspection</span></label>
+            <label class="radio-option"><input type="radio" name="intention"><span>💞 All of the above</span></label>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="mb-2">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">8</span>
+            <label class="form-label-retreat mb-0">In your own words, what do you hope to leave behind?</label>
+          </div>
+          <textarea class="form-control-retreat" name="leave-behind" rows="3"
+            placeholder="This is a sacred space to be honest. What are you ready to release?"></textarea>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Retreat Preferences -->
+      <div
+        style="background:var(--card-bg);border-radius:20px;padding:2rem;border:1px solid var(--card-border);margin-bottom:1.5rem;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:1.5rem;color:var(--primary);">
+          🌿 Section 3 — Retreat Preferences
+        </h3>
+
+        <!-- Q9 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">9</span>
+            <label class="form-label-retreat mb-0">Do you have previous meditation experience?</label>
+          </div>
+          <div class="d-flex flex-column gap-2">
+            <label class="radio-option"><input type="radio" name="meditation-exp"><span>Complete beginner — never
+                meditated</span></label>
+            <label class="radio-option"><input type="radio" name="meditation-exp"><span>Occasional — tried a few
+                times</span></label>
+            <label class="radio-option"><input type="radio" name="meditation-exp"><span>Regular — weekly
+                practice</span></label>
+            <label class="radio-option"><input type="radio" name="meditation-exp"><span>Advanced — daily practice for
+                years</span></label>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">10</span>
+            <label class="form-label-retreat mb-0">Your preferred daily wake-up time?</label>
+          </div>
+          <select class="form-control-retreat" name="wakeup">
+            <option>5:00 AM — I embrace early mornings</option>
+            <option>6:00 AM — Moderate early riser</option>
+            <option>7:00 AM — Natural waker</option>
+            <option>I'll adjust to whatever the retreat needs</option>
+          </select>
+        </div>
+
+        <!-- Q11 -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">11</span>
+            <label class="form-label-retreat mb-0">How are you with total silence (no talking)?</label>
+          </div>
+          <div class="d-flex flex-column gap-2">
+            <label class="radio-option"><input type="radio" name="silence"><span>😬 Nervous but ready to
+                try</span></label>
+            <label class="radio-option"><input type="radio" name="silence"><span>😌 Comfortable — I need quiet
+                time</span></label>
+            <label class="radio-option"><input type="radio" name="silence"><span>🧘 Experienced — I've done silent
+                retreats before</span></label>
+          </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="mb-2">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="question-number">12</span>
+            <label class="form-label-retreat mb-0">Is there anything else you'd like your guide to know about
+              you?</label>
+          </div>
+          <textarea class="form-control-retreat" name="anything-else" rows="4"
+            placeholder="Share anything that will help us create the most healing experience for you. There are no wrong answers here."></textarea>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div style="text-align:center;">
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.25rem;">
+          🔒 Your responses are private and will only be shared with your assigned guide.
+        </p>
+        <button type="submit" class="btn-primary-retreat" style="padding:1rem 3rem;font-size:1rem;"
+          onclick="submitForm(event)">
+          Submit Wellness Form 🌿
+        </button>
+        <div style="margin-top:0.75rem;">
+          <a href="dashboard.html" style="font-size:0.82rem;color:var(--text-muted);">Save and finish later →</a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Logic scripts -->
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/loader.js"></script>
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = e.target;
+      btn.innerHTML = '⏳ Submitting...';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.querySelector('form').innerHTML = `
         <div class="text-center py-4">
           <div style="font-size:4rem;margin-bottom:1rem;">🌿</div>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--primary);margin-bottom:0.75rem;">Thank You, Sarah</h3>
@@ -389,8 +531,9 @@
           <a href="dashboard.html" class="btn-primary-retreat text-decoration-none">← Back to Dashboard</a>
         </div>
       `;
-    }, 1500);
-  }
-</script>
+      }, 1500);
+    }
+  </script>
 </body>
+
 </html>
