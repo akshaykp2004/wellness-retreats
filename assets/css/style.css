@@ -862,12 +862,13 @@ body.bright-mode .footer-retreat {
   border-top: 1px solid var(--border);
 }
 
+body.bright-mode .footer-retreat .footer-brand,
 body.bright-mode .footer-retreat .footer-heading,
 body.bright-mode .footer-retreat .footer-links a,
 body.bright-mode .footer-retreat .footer-tagline,
 body.bright-mode .footer-retreat .footer-description,
 body.bright-mode .footer-retreat .footer-bottom {
-  color: var(--text-secondary) !important;
+  color: var(--text-primary) !important;
 }
 
 body.bright-mode .footer-newsletter-input {
