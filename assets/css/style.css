@@ -179,6 +179,7 @@ img {
   background: var(--primary-light);
   box-shadow: 0 4px 20px rgba(46, 139, 87, 0.4);
   transform: translateY(-1px);
+  color: var(--dark) !important;
 }
 
 .icon-btn {
@@ -198,8 +199,8 @@ img {
 
 .icon-btn:hover {
   border-color: var(--primary);
-  color: var(--primary);
-  background: rgba(46, 139, 87, 0.07);
+  color: var(--dark);
+  background: var(--primary-light);
 }
 
 /* Divider for forms */
@@ -382,7 +383,7 @@ img {
   background: var(--primary-light);
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(46, 139, 87, 0.5);
-  color: #fff;
+  color: var(--dark);
 }
 
 .btn-outline-retreat {
@@ -410,15 +411,15 @@ img {
 .btn-outline-retreat:hover {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff !important;
+  color: var(--dark) !important;
   transform: translateY(-2px);
 }
 
 .hero-section .btn-outline-retreat:hover,
 .hero-detail .btn-outline-retreat:hover {
-  border-color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff !important;
+  border-color: var(--primary-light);
+  background: var(--primary-light);
+  color: var(--dark) !important;
 }
 
 .hero-scroll-hint {
@@ -977,6 +978,7 @@ body.bright-mode .footer-newsletter-input::placeholder {
 
 .footer-newsletter-btn:hover {
   background: var(--primary-light);
+  color: var(--dark);
 }
 
 .footer-bottom {
@@ -1149,8 +1151,8 @@ body.bright-mode .footer-newsletter-input::placeholder {
 
 .sidebar-link:hover,
 .sidebar-link.active {
-  background: rgba(46, 139, 87, 0.1);
-  color: var(--primary);
+  background: var(--primary-light);
+  color: var(--dark);
 }
 
 .sidebar-link i {
