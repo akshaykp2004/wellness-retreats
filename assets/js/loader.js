@@ -47,16 +47,21 @@ document.addEventListener('DOMContentLoaded', () => {
      * Corrects links in the injected components based on directory depth
      */
     function correctPaths(element, isSubPage) {
+        if (!isSubPage) return;
+
         // Correct links
         const links = element.querySelectorAll('a');
         links.forEach(link => {
             let href = link.getAttribute('href');
-            if (!href || href.startsWith('http') || href.startsWith('#') || href === 'javascript:void(0)') return;
+            // Skip external, hash, or already corrected links
+            if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('../')) return;
 
-            if (isSubPage) {
-                if (href === 'index.html') link.setAttribute('href', '../index.html');
-                else if (href.startsWith('pages/')) link.setAttribute('href', href.replace('pages/', ''));
-                else if (href.startsWith('assets/')) link.setAttribute('href', '../' + href);
+            if (href.startsWith('pages/')) {
+                // If it's a link to a sibling in the /pages/ folder
+                link.setAttribute('href', href.replace('pages/', ''));
+            } else {
+                // It's a link to the root directory
+                link.setAttribute('href', '../' + href);
             }
         });
 
@@ -64,11 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const images = element.querySelectorAll('img');
         images.forEach(img => {
             let src = img.getAttribute('src');
-            if (!src || src.startsWith('http') || src.startsWith('data:')) return;
+            if (!src || src.startsWith('http') || src.startsWith('data:') || src.startsWith('../')) return;
 
-            if (isSubPage && src.startsWith('assets/')) {
-                img.setAttribute('src', '../' + src);
-            }
+            // Prefix with parent dir for all relative assets
+            img.setAttribute('src', '../' + src);
         });
     }
 

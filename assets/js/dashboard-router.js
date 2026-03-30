@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="small font-weight-bold">25% Complete</span>
-                                <button class="btn btn-sm btn-outline-retreat py-1 px-3" style="font-size: 0.75rem;">Continue</button>
+                                <button class="btn btn-sm btn-primary-retreat py-1 px-3" style="font-size: 0.75rem;">Continue</button>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="small font-weight-bold">0% Complete</span>
-                                <button class="btn btn-sm btn-outline-retreat py-1 px-3" style="font-size: 0.75rem;">Start</button>
+                                <button class="btn btn-sm btn-primary-retreat py-1 px-3" style="font-size: 0.75rem;">Start</button>
                             </div>
                         </div>
                     </div>
