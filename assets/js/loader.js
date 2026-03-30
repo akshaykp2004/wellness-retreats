@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerPlaceholder = document.getElementById('footer-placeholder');
 
     // Detect if current page is in the /pages/ directory
-    const isSubPage = window.location.pathname.includes('/pages/');
+    // More robust check for subdirectory vs project folder names
+    const isSubPage = window.location.pathname.toLowerCase().includes('/pages/') || 
+                      window.location.pathname.toLowerCase().endsWith('/pages');
     const basePath = isSubPage ? '../' : './';
 
     // 1. LOAD HEADER
@@ -18,13 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.text())
             .then(data => {
                 headerPlaceholder.innerHTML = data;
-                const header = headerPlaceholder.querySelector('nav');
-                if (header) {
-                    correctPaths(header, isSubPage);
-                    setActiveLink(header);
-                    // Initialize theme and RTL toggles after injection
-                    if (window.initAppLogic) window.initAppLogic();
+                // Correct paths for the ENTIRE injected container (nav + offcanvas menu)
+                if (isSubPage) {
+                    correctPaths(headerPlaceholder, isSubPage);
                 }
+                
+                // Initialize active logic
+                const nav = headerPlaceholder.querySelector('nav');
+                if (nav) setActiveLink(nav);
+                
+                // Initialize theme and RTL toggles after injection
+                if (window.initAppLogic) window.initAppLogic();
             })
             .catch(err => console.error('Error loading header:', err));
     }
@@ -35,9 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.text())
             .then(data => {
                 footerPlaceholder.innerHTML = data;
-                const footer = footerPlaceholder.querySelector('footer');
-                if (footer) {
-                    correctPaths(footer, isSubPage);
+                if (isSubPage) {
+                    correctPaths(footerPlaceholder, isSubPage);
                 }
             })
             .catch(err => console.error('Error loading footer:', err));
