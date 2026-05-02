@@ -232,7 +232,7 @@
         id="cart-total">$0</div>
     </div>
     <button class="btn-primary-retreat mt-3" style="width:100%;justify-content:center;" onclick="confirmAddons()">
-      Confirm Add-ons →
+      Confirm Add-ons
     </button>
   </div>
 
@@ -242,7 +242,6 @@
 
       <!-- CATEGORY: Massages -->
       <div class="category-header animate-on-scroll">
-        <span style="font-size:1.5rem;">💆</span>
         <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Body Therapies
         </h2>
         <div class="category-line"></div>
@@ -312,7 +311,6 @@
 
       <!-- CATEGORY: Private Sessions -->
       <div class="category-header animate-on-scroll">
-        <span style="font-size:1.5rem;">🧘</span>
         <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Private Sessions
         </h2>
         <div class="category-line"></div>
@@ -383,7 +381,6 @@
 
       <!-- CATEGORY: Nutrition -->
       <div class="category-header animate-on-scroll">
-        <span style="font-size:1.5rem;">🥗</span>
         <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin:0;">Nutritional
           Wellbeing</h2>
         <div class="category-line"></div>
@@ -478,7 +475,7 @@
         } else {
           cartItems[id] = { name, price };
           card.classList.add('in-cart');
-          btn.textContent = '✓ Added';
+          btn.textContent = 'Added';
           btn.className = 'btn-add-addon btn-success-retreat';
           btn.style = 'padding:0.45rem 1rem;font-size:0.8rem;';
         }
@@ -514,10 +511,9 @@
       const panel = document.getElementById('cart-panel');
       panel.innerHTML = `
       <div class="text-center py-2">
-        <div style="font-size:2rem;margin-bottom:0.5rem;">🌿</div>
         <div style="font-weight:700;color:var(--primary);font-size:0.95rem;">Add-ons Saved!</div>
         <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem;">You'll be invoiced separately.</div>
-        <a href="dashboard.html" style="font-size:0.82rem;color:var(--primary);display:block;margin-top:0.75rem;">← Dashboard</a>
+        <a href="dashboard.html" style="font-size:0.82rem;color:var(--primary);display:block;margin-top:0.75rem;">Dashboard</a>
       </div>
     `;
     }
