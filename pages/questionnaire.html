@@ -57,6 +57,18 @@
       background: rgba(46, 139, 87, 0.06);
     }
 
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 767px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .scale-option {
       display: flex;
       flex-direction: column;
@@ -225,12 +237,12 @@
     </div>
 
     <!-- Intro -->
-    <div style="margin-bottom:2.5rem;">
+    <div style="margin-bottom:3.5rem; text-align:center;">
       <div class="section-label">Wellness Assessment</div>
-      <h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:1rem;">
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:400;margin-bottom:1.5rem;">
         Help Us Care for <em style="color:var(--primary);">You</em>
       </h1>
-      <p style="color:var(--text-secondary);line-height:1.8;">
+      <p style="color:var(--text-secondary);line-height:1.8;max-width:600px;margin:0 auto;">
         This questionnaire helps our guides and healers understand your unique needs, so we can tailor your retreat
         experience. Your answers are completely private and shared only with your assigned guide.
       </p>
@@ -251,7 +263,7 @@
             <span class="question-number">1</span>
             <label class="form-label-retreat mb-0">How would you describe your overall fitness level?</label>
           </div>
-          <div class="d-flex flex-column gap-2">
+          <div class="options-grid">
             <label class="radio-option"><input type="radio" name="fitness"><span>Beginner — I rarely
                 exercise</span></label>
             <label class="radio-option"><input type="radio" name="fitness"><span>Moderate — Light activity 2-3x per
@@ -310,11 +322,11 @@
             <span class="question-number">4</span>
             <label class="form-label-retreat mb-0">Are you currently taking any medications?</label>
           </div>
-          <div class="d-flex gap-3 mb-2">
-            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+          <div class="options-grid mb-2">
+            <label class="radio-option">
               <input type="radio" name="medications"><span>No medications</span>
             </label>
-            <label class="radio-option" style="padding:0.4rem 0.8rem;">
+            <label class="radio-option">
               <input type="radio" name="medications"><span>Yes (please specify)</span>
             </label>
           </div>
@@ -378,7 +390,7 @@
             <label class="form-label-retreat mb-0">Have you experienced any of the following recently? (select all that
               apply)</label>
           </div>
-          <div class="d-flex flex-column gap-2">
+          <div class="options-grid">
             <label class="radio-option"><input type="checkbox" name="symptoms"><span>Anxiety or panic
                 attacks</span></label>
             <label class="radio-option"><input type="checkbox" name="symptoms"><span>Depression or low
@@ -398,7 +410,7 @@
             <span class="question-number">7</span>
             <label class="form-label-retreat mb-0">What is your primary intention for this retreat?</label>
           </div>
-          <div class="d-flex flex-column gap-2">
+          <div class="options-grid">
             <label class="radio-option"><input type="radio" name="intention"><span>Mental clarity and stress
                 relief</span></label>
             <label class="radio-option"><input type="radio" name="intention"><span>Physical restoration and
@@ -437,7 +449,7 @@
             <span class="question-number">9</span>
             <label class="form-label-retreat mb-0">Do you have previous meditation experience?</label>
           </div>
-          <div class="d-flex flex-column gap-2">
+          <div class="options-grid">
             <label class="radio-option"><input type="radio" name="meditation-exp"><span>Complete beginner — never
                 meditated</span></label>
             <label class="radio-option"><input type="radio" name="meditation-exp"><span>Occasional — tried a few
@@ -469,7 +481,7 @@
             <span class="question-number">11</span>
             <label class="form-label-retreat mb-0">How are you with total silence (no talking)?</label>
           </div>
-          <div class="d-flex flex-column gap-2">
+          <div class="options-grid">
             <label class="radio-option"><input type="radio" name="silence"><span>Nervous but ready to
                 try</span></label>
             <label class="radio-option"><input type="radio" name="silence"><span>Comfortable — I need quiet

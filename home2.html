@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serene Retreat — Deep Silence & Reconnection</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <meta name="description"
-        content="Dive deep into the silence. A second variant of our premium wellness experience.">
+    <meta name="description" content="Dive deep into the silence. A second variant of our premium wellness experience.">
 
     <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -99,7 +98,7 @@
             position: relative;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .philosophy-img {
@@ -117,13 +116,13 @@
             position: absolute;
             bottom: 2rem;
             left: 3rem;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             padding: 1.5rem 2rem;
             border-radius: 15px;
             color: #fff;
             max-width: 300px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* 425px Mobile Refinements */
@@ -132,29 +131,37 @@
                 font-size: 2.2rem !important;
                 margin-bottom: 1.5rem;
             }
+
             .hero-subtitle {
                 font-size: 1rem !important;
                 margin-bottom: 2rem !important;
             }
+
             .d-flex.justify-content-center.gap-3 {
                 flex-direction: column;
                 gap: 1rem !important;
                 width: 100%;
                 padding: 0 1rem;
             }
-            .btn-primary-retreat, .btn-outline-retreat {
+
+            .btn-primary-retreat,
+            .btn-outline-retreat {
                 width: 100%;
                 padding: 1rem !important;
             }
+
             .section-pad {
                 padding: 3.5rem 0 !important;
             }
+
             .section-title {
                 font-size: 2rem !important;
             }
+
             .philosophy-img {
                 height: 400px !important;
             }
+
             .zen-accent {
                 position: relative;
                 bottom: 0;
@@ -164,15 +171,178 @@
                 margin-right: 1rem;
                 max-width: none;
             }
+
             .journey-step {
                 padding-left: 2.5rem;
                 margin-bottom: 2.5rem;
             }
+
             .section-pad[style*="padding: 8rem 0;"] {
                 padding: 4rem 0 !important;
             }
+
             .section-pad[style*="padding: 8rem 0;"] h2 {
                 font-size: 2.2rem !important;
+            }
+        }
+
+        /* Additional Sections Styles */
+        .space-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .space-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .space-img-wrap {
+            height: 250px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .space-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .space-card:hover .space-img {
+            transform: scale(1.1);
+        }
+
+        .space-content {
+            padding: 2rem;
+        }
+
+        .quote-container {
+            position: relative;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .quote-large {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-style: italic;
+            line-height: 1.3;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote-large::before {
+            content: '“';
+            position: absolute;
+            top: -2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10rem;
+            color: var(--primary);
+            opacity: 0.1;
+            z-index: -1;
+            font-family: serif;
+        }
+
+        .quote-author {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .integration-item {
+            text-align: center;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .integration-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .integration-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        .integration-item p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .culinary-card {
+            background: var(--bg-section);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        body.bright-mode .culinary-card {
+            background: #fff;
+            border-color: rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .culinary-card:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .culinary-section {
+            background: #000;
+        }
+
+        body.bright-mode .culinary-section {
+            background: #fff !important;
+        }
+
+        .culinary-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        .culinary-content {
+            flex: 1;
+        }
+
+        @media (max-width: 991px) {
+            .culinary-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .culinary-img {
+                width: 100%;
+                height: 250px;
             }
         }
     </style>
@@ -190,19 +360,22 @@
         <div class="container position-relative" style="z-index:2;">
             <div class="row justify-content-center align-items-center" style="min-height: 90vh;">
                 <div class="col-lg-9 text-center">
-                    <div class="section-label text-white-50 animate-on-scroll" style="letter-spacing: 0.3em;">ESTABLISHED 2017</div>
+                    <div class="section-label text-white-50 animate-on-scroll" style="letter-spacing: 0.3em;">
+                        ESTABLISHED 2017</div>
                     <h1 class="hero-title-v2 animate-on-scroll animate-delay-1">
                         The Art of <br><em>Deep Listening</em>
                     </h1>
-                    <p class="hero-subtitle text-white-50 mb-5 animate-on-scroll animate-delay-2 mx-auto" style="max-width: 650px; font-size: 1.25rem;">
-                        In our sanctuary, silence isn't the absence of sound. 
+                    <p class="hero-subtitle text-white-50 mb-5 animate-on-scroll animate-delay-2 mx-auto"
+                        style="max-width: 650px; font-size: 1.25rem;">
+                        In our sanctuary, silence isn't the absence of sound.
                         It's the presence of peace. Experience the world's most immersive Digital Detox.
                     </p>
                     <div class="d-flex justify-content-center gap-3 animate-on-scroll animate-delay-3">
                         <a href="pages/packages.html" class="btn-primary-retreat text-decoration-none px-5 py-3">
                             Explore Retreats
                         </a>
-                        <a href="#philosophy" class="btn-outline-retreat text-decoration-none px-5 py-3" style="border-color: rgba(255,255,255,0.3); color:#fff;">
+                        <a href="#philosophy" class="btn-outline-retreat text-decoration-none px-5 py-3"
+                            style="border-color: rgba(255,255,255,0.3); color:#fff;">
                             Our Story
                         </a>
                     </div>
@@ -219,18 +392,22 @@
                     <div class="philosophy-img-container">
                         <img src="assets/img/philosophy-bg-v2.png" alt="Meditation Sanctuary" class="philosophy-img">
                         <div class="zen-accent animate-on-scroll animate-delay-2">
-                            <p class="mb-0 italic fw-light">"True silence is the rest of the mind, and is to the spirit what sleep is to the body."</p>
+                            <p class="mb-0 italic fw-light">"True silence is the rest of the mind, and is to the spirit
+                                what sleep is to the body."</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1 animate-on-scroll">
                     <div class="section-label">Our Philosophy</div>
-                    <h2 class="section-title mb-4">Beyond the <br><em style="color:var(--primary);">Digital Horizon</em></h2>
+                    <h2 class="section-title mb-4">Beyond the <br><em style="color:var(--primary);">Digital Horizon</em>
+                    </h2>
                     <p class="mb-4 text-secondary" style="font-size: 1.1rem; line-height: 1.8;">
-                        We believe that modern life has stolen our ability to simply *be*. Constant notifications have fractured our attention, and the buzz of the city has drowned out our internal rhythm.
+                        We believe that modern life has stolen our ability to simply *be*. Constant notifications have
+                        fractured our attention, and the buzz of the city has drowned out our internal rhythm.
                     </p>
                     <p class="mb-5 text-secondary" style="font-size: 1.1rem; line-height: 1.8;">
-                        Our "Deep Silence" method isn't just about turning off your phone. It's about turning on your awareness through structured meditations, forest-to-plate nutrition, and vibrational healing.
+                        Our "Deep Silence" method isn't just about turning off your phone. It's about turning on your
+                        awareness through structured meditations, forest-to-plate nutrition, and vibrational healing.
                     </p>
                     <div class="row g-4">
                         <div class="col-sm-6">
@@ -272,28 +449,175 @@
                     <p class="section-subtitle mx-auto">From the surface of noise to the core of your being.</p>
                 </div>
             </div>
-            
+
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="journey-step animate-on-scroll">
                         <div class="step-number">1</div>
                         <h3>The Surface (Day 1-2)</h3>
-                        <p class="text-secondary">Shedding the digital skin. Handling the "vibration itch" and the initial discomfort of solitude while the nervous system begins to recalibrate.</p>
+                        <p class="text-secondary">Shedding the digital skin. Handling the "vibration itch" and the
+                            initial discomfort of solitude while the nervous system begins to recalibrate.</p>
                     </div>
                     <div class="journey-step animate-on-scroll">
                         <div class="step-number">2</div>
                         <h3>The Layering (Day 3-4)</h3>
-                        <p class="text-secondary">Physical detox. Your senses heighten. The smell of rain becomes vivid, the sound of the forest becomes a symphony. Deep emotional clearing begins.</p>
+                        <p class="text-secondary">Physical detox. Your senses heighten. The smell of rain becomes vivid,
+                            the sound of the forest becomes a symphony. Deep emotional clearing begins.</p>
                     </div>
                     <div class="journey-step animate-on-scroll">
                         <div class="step-number">3</div>
                         <h3>The Core (Day 5-6)</h3>
-                        <p class="text-secondary">The "Silence Barrier" is broken. You enter a state of profound peace where internal dialogue quiets. Epiphanies and deep clarity emerge effortlessly.</p>
+                        <p class="text-secondary">The "Silence Barrier" is broken. You enter a state of profound peace
+                            where internal dialogue quiets. Epiphanies and deep clarity emerge effortlessly.</p>
                     </div>
                     <div class="journey-step animate-on-scroll">
                         <div class="step-number">4</div>
                         <h3>The Integration (Day 7)</h3>
-                        <p class="text-secondary">Preparing for the return. We provide tools to carry this newfound internal sanctuary back into the world of noise without losing yourself again.</p>
+                        <p class="text-secondary">Preparing for the return. We provide tools to carry this newfound
+                            internal sanctuary back into the world of noise without losing yourself again.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SACRED SPACES -->
+    <section class="section-pad bg-sand">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center animate-on-scroll">
+                    <div class="section-label">Architecture of Silence</div>
+                    <h2 class="section-title">The Sacred <em style="color:var(--primary);">Spaces</em></h2>
+                    <p class="section-subtitle mx-auto">Every corner of our sanctuary is designed to harmonize with your
+                        internal journey.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="space-card">
+                        <div class="space-img-wrap">
+                            <img src="assets/img/space-shala.png" alt="The Silent Shala" class="space-img">
+                        </div>
+                        <div class="space-content">
+                            <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; margin-bottom:1rem;">The
+                                Silent Shala</h4>
+                            <p class="text-secondary" style="font-size:0.9rem;">Built entirely from reclaimed teak, this
+                                open-air pavilion is where our deepest vibrational healings take place.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll animate-delay-1">
+                    <div class="space-card">
+                        <div class="space-img-wrap">
+                            <img src="assets/img/space-cabin.png" alt="Echo-Cabins" class="space-img">
+                        </div>
+                        <div class="space-content">
+                            <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; margin-bottom:1rem;">
+                                Forest Sanctuary</h4>
+                            <p class="text-secondary" style="font-size:0.9rem;">Your private dwelling. Minimalist
+                                architecture that blurs the line between shelter and the ancient forest surrounding you.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll animate-delay-2">
+                    <div class="space-card">
+                        <div class="space-img-wrap">
+                            <img src="assets/img/space-garden.png" alt="Ancestral Garden" class="space-img">
+                        </div>
+                        <div class="space-content">
+                            <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; margin-bottom:1rem;">
+                                Ancestral Garden</h4>
+                            <p class="text-secondary" style="font-size:0.9rem;">A place of harvest and meditation. Walk
+                                barefoot among 80 species of healing herbs and ancient flora.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CULINARY EXPERIENCE -->
+    <section class="section-pad culinary-section">
+        <div class="container">
+            <div class="culinary-card animate-on-scroll">
+                <img src="assets/img/culinary.png" alt="Forest-to-Plate Dining" class="culinary-img">
+                <div class="culinary-content">
+                    <div class="section-label">Mindful Nutrition</div>
+                    <h2 class="section-title mb-4" style="font-size: 2.5rem;">The Forest-to-Plate <br><em
+                            style="color:var(--primary);">Experience</em></h2>
+                    <p class="text-secondary mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                        Silence extends to the palate. Our culinary philosophy is built on "Bio-Frequency
+                        Dining"—high-vibrational, organic meals harvested daily from our ancestral garden and the
+                        surrounding wild forest.
+                    </p>
+                    <div class="d-flex gap-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf">
+                                    <path
+                                        d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                                    <path d="M2 21c0-3 1.85-5.36 5.08-6C10.9 14.51 12 13 13 12" /></svg></span>
+                            <span class="fw-bold small">100% Organic</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
+                                    <path
+                                        d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                                    <path d="M5 3v4" />
+                                    <path d="M19 17v4" />
+                                    <path d="M3 5h4" />
+                                    <path d="M17 19h4" /></svg></span>
+                            <span class="fw-bold small">Micro-Seasonal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE ETERNAL CALM -->
+    <section class="section-pad bg-sand" style="border-top: 1px solid var(--border);">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center animate-on-scroll">
+                    <div class="section-label">Post-Retreat Integration</div>
+                    <h2 class="section-title">The Eternal <em style="color:var(--primary);">Calm</em></h2>
+                    <p class="section-subtitle mx-auto">Our support doesn't end when you leave. We provide the tools to carry the silence back into your world.</p>
+                </div>
+            </div>
+
+            <div class="row g-4 text-center">
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="integration-item">
+                        <div class="integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-compass"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                        </div>
+                        <h4>The Silent Compass</h4>
+                        <p>A physical companion guide for mindful living, helping you navigate the digital world without losing your center.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll animate-delay-1">
+                    <div class="integration-item">
+                        <div class="integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+                        </div>
+                        <h4>Frequency Access</h4>
+                        <p>Lifetime access to our library of forest soundscapes and binaural beats recorded live at the sanctuary.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll animate-delay-2">
+                    <div class="integration-item">
+                        <div class="integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-star"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+                        </div>
+                        <h4>Monthly Rituals</h4>
+                        <p>Monthly live-streamed full moon meditations with our masters to refresh your practice from anywhere.</p>
                     </div>
                 </div>
             </div>
@@ -306,21 +630,28 @@
             <div class="animate-on-scroll">
                 <h2 class="section-title text-white mb-4" style="font-size: 3.5rem;">Ready to Find Your Center?</h2>
                 <p class="text-white-50 mb-5 mx-auto" style="max-width: 600px; font-size: 1.2rem;">
-                    Our next 7-day Silent Journey begins on the first full moon of next month. Limited to 12 practitioners.
+                    Our next 7-day Silent Journey begins on the first full moon of next month. Limited to 12
+                    practitioners.
                 </p>
                 <div class="d-flex justify-content-center gap-3">
-                    <a href="pages/booking.html" class="btn-primary-retreat text-decoration-none px-5 py-3" style="background:#fff; color:var(--primary-dark);">
+                    <a href="pages/booking.html" class="btn-primary-retreat text-decoration-none px-5 py-3"
+                        style="background:#fff; color:var(--primary-dark);">
                         Book Reservation
                     </a>
-                    <a href="pages/contact.html" class="btn-outline-retreat text-decoration-none px-5 py-3" style="color:#fff; border-color: rgba(255,255,255,0.2);">
+                    <a href="pages/contact.html" class="btn-outline-retreat text-decoration-none px-5 py-3"
+                        style="color:#fff; border-color: rgba(255,255,255,0.2);">
                         Contact Concierge
                     </a>
                 </div>
             </div>
         </div>
         <!-- Decorative subtle lights -->
-        <div style="position:absolute; top:-10%; right:-5%; width:40%; height:80%; background:radial-gradient(circle, rgba(46,139,87,0.1) 0%, transparent 70%);"></div>
-        <div style="position:absolute; bottom:-10%; left:-5%; width:40%; height:80%; background:radial-gradient(circle, rgba(46,139,87,0.1) 0%, transparent 70%);"></div>
+        <div
+            style="position:absolute; top:-10%; right:-5%; width:40%; height:80%; background:radial-gradient(circle, rgba(46,139,87,0.1) 0%, transparent 70%);">
+        </div>
+        <div
+            style="position:absolute; bottom:-10%; left:-5%; width:40%; height:80%; background:radial-gradient(circle, rgba(46,139,87,0.1) 0%, transparent 70%);">
+        </div>
     </section>
 
     <div id="footer-placeholder"></div>

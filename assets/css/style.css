@@ -1984,6 +1984,57 @@ body.bright-mode .hero-overlay {
   padding: 0 1.5rem;
 }
 
+/* Daily Rituals Section */
+.ritual-card {
+  padding: 2.5rem;
+  border-radius: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ritual-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px var(--shadow-deep);
+}
+
+.ritual-time {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.ritual-icon {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  opacity: 0.9;
+  height: 32px;
+}
+
+.ritual-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.ritual-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
 .timeline-dot {
   width: 20px;
   height: 20px;
@@ -2066,6 +2117,76 @@ body.bright-mode .hero-overlay {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--primary);
+}
+
+/* Science Section */
+.science-card {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  height: 100%;
+  transition: var(--transition);
+}
+
+.science-card:last-child {
+  border-right: none;
+}
+
+@media (max-width: 991px) {
+  .science-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+  }
+  .science-card:last-child {
+    border-bottom: none;
+  }
+}
+
+.science-icon {
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  display: inline-flex;
+  padding: 1.25rem;
+  background: rgba(161, 196, 225, 0.1);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.science-card:hover .science-icon {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.science-stat {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.science-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.science-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .testimonial-text {

@@ -45,61 +45,69 @@
     }
 
     .sidebar-section-title {
-      font-size: 0.65rem;
-      font-weight: 800;
+      font-size: 0.75rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       color: var(--text-muted);
-      padding: 1.5rem 1.5rem 0.5rem;
-      opacity: 0.7;
+      padding: 2.25rem 1.5rem 0.75rem;
+      opacity: 0.5;
     }
 
     .sidebar-link {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
-      padding: 0.75rem 1.5rem;
+      gap: 1.25rem;
+      padding: 0.85rem 1.5rem;
       color: var(--text-secondary);
       font-weight: 500;
-      font-size: 0.92rem;
-      border-radius: 12px;
-      margin: 0.2rem 0.75rem;
-      transition: all 0.25s ease;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
       text-decoration: none !important;
+      position: relative;
     }
 
     .sidebar-link .icon {
-      font-size: 1.2rem;
-      width: 28px;
-      height: 28px;
+      font-size: 1.15rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(112, 151, 187, 0.05);
-      border-radius: 8px;
-      transition: all 0.25s ease;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
     }
 
     .sidebar-link:hover {
-      background: var(--primary-light);
-      color: var(--dark);
+      color: var(--primary);
+      background: rgba(161, 196, 225, 0.04);
     }
 
     .sidebar-link:hover .icon {
-      background: rgba(112, 151, 187, 0.12);
-      transform: scale(1.1);
+      color: var(--primary);
     }
 
     .sidebar-link.active {
-      background: linear-gradient(to right, rgba(112, 151, 187, 0.12), rgba(112, 151, 187, 0.03));
-      color: var(--primary-dark);
+      color: var(--primary);
+      background: rgba(161, 196, 225, 0.08);
       font-weight: 700;
-      box-shadow: inset 4px 0 0 var(--primary);
     }
 
-    [dir="rtl"] .sidebar-link.active {
-      background: linear-gradient(to left, rgba(112, 151, 187, 0.12), rgba(112, 151, 187, 0.03));
-      box-shadow: inset -4px 0 0 var(--primary);
+    .sidebar-link.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 4px;
+      background: var(--primary);
+      border-radius: 0 4px 4px 0;
+      box-shadow: 2px 0 10px rgba(161, 196, 225, 0.3);
+    }
+
+    [dir="rtl"] .sidebar-link.active::before {
+      left: auto;
+      right: 0;
+      border-radius: 4px 0 0 4px;
+      box-shadow: -2px 0 10px rgba(161, 196, 225, 0.3);
     }
 
     .dashboard-main {
@@ -112,6 +120,7 @@
       .dashboard-layout {
         grid-template-columns: 240px 1fr;
       }
+
       .dashboard-main {
         padding: 1.5rem;
       }
@@ -167,6 +176,7 @@
         height: 100vh;
         width: 280px;
         box-shadow: 15px 0 40px rgba(0, 0, 0, 0.1);
+        padding-top: 5rem; /* Space for the sticky mobile header */
       }
 
       .dashboard-sidebar.active {
@@ -462,7 +472,7 @@
       .quick-link-card {
         padding: 1.25rem 1rem !important;
       }
-      
+
       .quick-link-icon {
         width: 36px !important;
         height: 36px !important;
@@ -481,16 +491,19 @@
         justify-content: space-between;
         align-items: center;
       }
-      .booking-card .row.g-4 .col-md-6:first-child .row.g-2 .col-6 > div:first-child {
+
+      .booking-card .row.g-4 .col-md-6:first-child .row.g-2 .col-6>div:first-child {
         margin-bottom: 0 !important;
       }
+
       .booking-card .row.g-4 .col-md-6:first-child .row.g-2 .col-6:last-child {
         border-bottom: none;
       }
-      
+
       .countdown-box {
         min-width: 60px !important;
       }
+
       .d-flex.justify-content-center.gap-3 {
         gap: 0.5rem !important;
       }
@@ -519,12 +532,12 @@
 
     <!-- SIDEBAR -->
     <div class="dashboard-sidebar" id="dashboard-sidebar">
-      <!-- Logo Container (Sticky) -->
-      <div class="sidebar-logo-container"
-        style="position: sticky; top: 0; background: var(--card-bg); z-index: 10; padding: 1.5rem; border-bottom: 1px solid var(--border);">
-        <a href="../index.html" class="logo-container" style="font-size: 1.4rem;">
-          <img src="../assets/logo.png" alt="Logo" style="height: 36px; width: auto;">
-          <span>Serene Retreat</span>
+      <!-- Logo Container (Sticky) - Hidden on mobile/tablet to avoid redundancy -->
+      <div class="sidebar-logo-container d-none d-lg-flex"
+        style="position: sticky; top: 0; background: var(--card-bg); z-index: 10; padding: 2.25rem 1.5rem; border-bottom: 1px solid var(--border); align-items: center; gap: 0.85rem;">
+        <a href="../index.html" class="logo-container" style="display: flex; align-items: center; gap: 0.85rem; text-decoration: none;">
+          <img src="../assets/logo.png" alt="Logo" style="height: 40px; width: auto;">
+          <span style="font-family:'Cormorant Garamond',serif; font-size: 1.6rem; font-weight: 600; color: var(--primary); letter-spacing: 0.02em;">Serene Retreat</span>
         </a>
       </div>
 
@@ -532,37 +545,89 @@
       <div class="text-center mb-1" style="padding: 1.5rem 1rem 1.5rem; border-bottom: 1px solid var(--border);">
         <div
           style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#fff;box-shadow: 0 8px 20px rgba(112, 151, 187, 0.2); border: 2px solid var(--card-bg);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-user">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
         <div style="font-weight:800;color:var(--text-primary);font-size:1.1rem; letter-spacing: -0.01em;">Sarah M.</div>
         <div style="font-size:0.75rem;color:var(--text-muted); font-weight: 600;">Vipassana Member</div>
       </div>
 
       <div class="sidebar-section-title">MAIN</div>
       <a href="#overview" class="sidebar-link active" data-page="overview">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span> Dashboard Overview
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-layout-dashboard">
+            <rect width="7" height="9" x="3" y="3" rx="1" />
+            <rect width="7" height="5" x="14" y="3" rx="1" />
+            <rect width="7" height="9" x="14" y="12" rx="1" />
+            <rect width="7" height="5" x="3" y="16" rx="1" />
+          </svg></span> Dashboard Overview
       </a>
       <a href="#questionnaire.html" class="sidebar-link" data-page="questionnaire.html">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span> Wellness Form
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-file-text">
+            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <line x1="10" y1="9" x2="8" y2="9" />
+          </svg></span> Wellness Form
       </a>
       <a href="#itinerary-detail.html" class="sidebar-link" data-page="itinerary-detail.html">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></span> My Itinerary
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-calendar">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+            <path d="M16 2v4" />
+            <path d="M8 2v4" />
+            <path d="M3 10h18" />
+          </svg></span> My Itinerary
       </a>
 
       <div class="sidebar-section-title">EXPERIENCE</div>
       <a href="#addons.html" class="sidebar-link" data-page="addons.html">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></span> Add-ons
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-sparkles">
+            <path
+              d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+            <path d="M5 3v4" />
+            <path d="M19 17v4" />
+            <path d="M3 5h4" />
+            <path d="M17 19h4" />
+          </svg></span> Add-ons
       </a>
       <a href="#book-sessions" class="sidebar-link" data-page="book-sessions">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> Book Sessions
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-activity">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg></span> Book Sessions
       </a>
       <a href="#activities" class="sidebar-link" data-page="activities">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C10.9 14.51 12 13 13 12"/></svg></span> Retreat Activities
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-leaf">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C10.9 14.51 12 13 13 12" />
+          </svg></span> Retreat Activities
       </a>
 
 
       <a href="javascript:void(0)" class="sidebar-link" data-bs-toggle="modal" data-bs-target="#logoutModal"
         style="color:var(--accent);">
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span> Logout
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-log-out">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg></span> Logout
       </a>
 
       <!-- Retreat Journey Mini Progress -->
@@ -609,28 +674,60 @@
       <div class="row g-3 mb-4">
         <div class="col-6 col-lg-3">
           <div class="quick-stat">
-            <div class="quick-stat-icon" style="background:rgba(112, 151, 187, 0.1);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div>
+            <div class="quick-stat-icon" style="background:rgba(112, 151, 187, 0.1);"><svg
+                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-calendar">
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                <path d="M16 2v4" />
+                <path d="M8 2v4" />
+                <path d="M3 10h18" />
+              </svg></div>
             <div class="quick-stat-number">23</div>
             <div class="quick-stat-label">Days Until Retreat</div>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="quick-stat">
-            <div class="quick-stat-icon" style="background:rgba(119,136,153,0.1);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
+            <div class="quick-stat-icon" style="background:rgba(119,136,153,0.1);"><svg
+                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-file-text">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <line x1="10" y1="9" x2="8" y2="9" />
+              </svg></div>
             <div class="quick-stat-number">40<span style="font-size:1rem;">%</span></div>
             <div class="quick-stat-label">Form Complete</div>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="quick-stat">
-            <div class="quick-stat-icon" style="background:rgba(212,196,183,0.3);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+            <div class="quick-stat-icon" style="background:rgba(212,196,183,0.3);"><svg
+                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-sparkles">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                <path d="M5 3v4" />
+                <path d="M19 17v4" />
+                <path d="M3 5h4" />
+                <path d="M17 19h4" />
+              </svg></div>
             <div class="quick-stat-number">0</div>
             <div class="quick-stat-label">Add-ons Selected</div>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="quick-stat">
-            <div class="quick-stat-icon" style="background:rgba(46,139,87,0.1);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C10.9 14.51 12 13 13 12"/></svg></div>
+            <div class="quick-stat-icon" style="background:rgba(46,139,87,0.1);"><svg xmlns="http://www.w3.org/2000/svg"
+                width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C10.9 14.51 12 13 13 12" />
+              </svg></div>
             <div class="quick-stat-number">1</div>
             <div class="quick-stat-label">Active Booking</div>
           </div>
@@ -642,7 +739,12 @@
         <div class="booking-card-header">
           <div
             style="width:48px;height:48px;border-radius:12px;background:rgba(112, 151, 187, 0.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-activity">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
           <div style="flex:1;">
             <div
               style="color:rgba(255,255,255,0.6);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.25rem;">
@@ -728,7 +830,15 @@
       <div class="row g-3 mb-4">
         <div class="col-sm-6 col-lg-3">
           <a href="questionnaire.html" class="quick-link-card" data-page="questionnaire.html">
-            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
+            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-file-text">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <line x1="10" y1="9" x2="8" y2="9" />
+              </svg></div>
             <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">Wellness Form</div>
             <div style="font-size:0.78rem;color:var(--text-muted);">40% complete · 12 questions left</div>
             <div style="margin-top:0.75rem;">
@@ -740,21 +850,41 @@
         </div>
         <div class="col-sm-6 col-lg-3">
           <a href="addons.html" class="quick-link-card" data-page="addons.html">
-            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
+            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-sparkles">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                <path d="M5 3v4" />
+                <path d="M19 17v4" />
+                <path d="M3 5h4" />
+                <path d="M17 19h4" />
+              </svg></div>
             <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">Add-on Extras</div>
             <div style="font-size:0.78rem;color:var(--text-muted);">Massages, private sessions & more</div>
           </a>
         </div>
         <div class="col-sm-6 col-lg-3">
           <a href="itinerary-detail.html" class="quick-link-card" data-page="itinerary-detail.html">
-            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div>
+            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-calendar">
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                <path d="M16 2v4" />
+                <path d="M8 2v4" />
+                <path d="M3 10h18" />
+              </svg></div>
             <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">View Itinerary</div>
             <div style="font-size:0.78rem;color:var(--text-muted);">Day-by-day program details</div>
           </a>
         </div>
         <div class="col-sm-6 col-lg-3">
           <a href="contact.html" class="quick-link-card" data-page="contact.html">
-            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="quick-link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-message-square">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg></div>
             <div style="font-weight:700;margin-bottom:0.3rem;font-size:0.92rem;">Support</div>
             <div style="font-size:0.78rem;color:var(--text-muted);">Ask our team anything</div>
           </a>
@@ -801,23 +931,62 @@
             <h5 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;margin-bottom:1.25rem;">What to Bring
             </h5>
             <div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg></span> Comfortable meditation
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Comfortable meditation
                 clothing (neutral tones)</div>
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg></span> Yoga mat (or rent one on-site)
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Yoga mat (or rent one on-site)
               </div>
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg></span> Personal toiletries
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Personal toiletries
                 (fragrance-free preferred)</div>
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg></span> Journal & pen</div>
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg></span> Warm layers for morning
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Journal & pen</div>
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Warm layers for morning
                 sessions</div>
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg></span> Walking shoes or barefoot
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span> Walking shoes or barefoot
                 sandals</div>
               <hr style="border-color:var(--border);">
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--accent);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> No phones / devices (will be
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--accent);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg></span> No phones / devices (will be
                 collected)</div>
-              <div class="d-flex gap-2 mb-1"><span style="color:var(--accent);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> No perfume / scented products
+              <div class="d-flex gap-2 mb-1"><span style="color:var(--accent);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg></span> No perfume / scented products
               </div>
-              <div class="d-flex gap-2"><span style="color:var(--accent);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> No alcohol or recreational
+              <div class="d-flex gap-2"><span style="color:var(--accent);"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg></span> No alcohol or recreational
                 substances</div>
             </div>
           </div>
