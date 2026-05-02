@@ -1787,13 +1787,14 @@ body.bright-mode .footer-newsletter-input::placeholder {
 /* ===========================
    LAYOUT HELPERS
    =========================== */
+/* No global top padding on body to ensure hero sections sit flush with fixed navbar */
 body:not(.home-page) {
-  padding-top: 74px;
+  padding-top: 0;
 }
 
 @media (max-width: 991px) {
   body:not(.home-page) {
-    padding-top: 70px;
+    padding-top: 0;
   }
 }
 
