@@ -55,7 +55,14 @@ body.bright-mode .btn-close {
 
 /* Ensure stats strip text remains highly legible in dark mode */
 body.bright-mode .stats-strip {
-  background: var(--primary-dark);
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+body.bright-mode .stats-strip .stat-number,
+body.bright-mode .stats-strip .stat-label {
+  color: var(--text-primary);
 }
 
 /* BASE */
@@ -814,8 +821,10 @@ body.bright-mode .hero-packages-overlay {
    STATS STRIP
    =========================== */
 .stats-strip {
-  background: var(--primary);
+  background: #000000;
   padding: 2.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stat-item {
